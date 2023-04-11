@@ -14,7 +14,18 @@ class InternNode: SKNode {
         spriteIntern = SKSpriteNode(imageNamed: "char_idle1")
         super.init()
         
+        let physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteIntern.size.width, height: spriteIntern.size.height))
+        physicsBody.affectedByGravity = false
+        physicsBody.allowsRotation = false
+        physicsBody.isDynamic = false
+        physicsBody.categoryBitMask = 1
+        physicsBody.collisionBitMask = 0
+        physicsBody.contactTestBitMask = 2
+        
         spriteIntern.texture?.filteringMode = .nearest
+        
+        self.physicsBody = physicsBody
+        
         self.addChild(spriteIntern)
         
         playAnim(state: .idle)
@@ -38,5 +49,11 @@ class InternNode: SKNode {
             break
         }
     }
+    
+//    func jump() {
+//            spriteIntern.physicsBody?.applyImpulse(.init(dx: spriteIntern.size.width, dy: spriteIntern.size.height * 2))
+//    }
+    
+   
 }
 
