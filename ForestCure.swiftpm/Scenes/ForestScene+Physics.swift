@@ -76,9 +76,6 @@ extension ForestScene: SKPhysicsContactDelegate {
     }
 }
 
-//  let infoScene = DiscoverScene(size: self!.size)
-//  infoScene.scaleMode = self!.scaleMode
-//  self!.view?.presentScene(infoScene)
 
 
 //for value in self!.hashAlgoritm {

@@ -25,7 +25,6 @@ class PlantsNode: SKNode {
         
         spritePlants.texture?.filteringMode = .nearest
         
-        
         self.physicsBody = physicsBody
         
         self.addChild(spritePlants)

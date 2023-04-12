@@ -14,21 +14,29 @@ class ForestScene: SKScene {
     var plantsNode: PlantsNode?
     var plants2Node: PlantsNode?
     var labNode: LabNode?
-
+    
     var direction: CGFloat = 0
     var moveSpeed: CGFloat = 2
     
     var infoPlantsButton: SKButtonNode?
     var collectPlantsButton: SKButtonNode?
     var cancelPlantsButton: SKButtonNode?
+    var testeButton: SKButtonNode?
     var namePlantCard: SKBalloonNode?
+    var teste: SKBalloonNode?
     
     var parallaxNodes: [SKNode] = []
+    
+    var introText: [String] = [
+        "texto 1",
+        "texto 2",
+        "texto 3",
+    ]
+    var indexText = -1
     
     var hashAlgoritm: [Int] = []
     var number = 1
     
-    //quando a cena é carrega pela primeira vez
     override func sceneDidLoad() {
         
         internNode = InternNode()
@@ -41,7 +49,7 @@ class ForestScene: SKScene {
         plantsNode?.zPosition = -1
         plantsNode?.position.y = -65
         plantsNode?.position.x = 80
-//        plantsNode?.setScale(0.8)
+        //        plantsNode?.setScale(0.8)
         self.addChild(plantsNode!)
         
         plants2Node = PlantsNode()
@@ -50,28 +58,25 @@ class ForestScene: SKScene {
         plants2Node?.position.y = -65
         plants2Node?.position.x = 200
         self.addChild(plants2Node!)
-        
-//        labNode = LabNode()
-//        labNode?.name = "lab"
-//        labNode?.zPosition = -1
-//        labNode?.position.y = -65
-//        labNode?.position.x = -30
-//        self.addChild(labNode!)
+
+        //        labNode = LabNode()
+        //        labNode?.name = "lab"
+        //        labNode?.zPosition = -1
+        //        labNode?.position.y = -65
+        //        labNode?.position.x = -30
+        //        self.addChild(labNode!)
         
         setupBackgroundParallax()
-
     }
     
-    // é usado toda vez que a cena é exibida
     override func didMove(to view: SKView) {
         setupForest()
         self.scaleMode = .aspectFill
         self.physicsWorld.contactDelegate = self
         
-        createBackground()
+        createInfitinyBackground()
     }
     
-    // método chamado continuamente enquanto a cena está sendo exibida, usado pra atualizar estados do jogo e realizar cálculos e lógica do jogo
     override func update(_ currentTime: TimeInterval) {
         if (direction != 0) {
             self.internNode?.xScale = direction // espelhar o player
@@ -82,7 +87,7 @@ class ForestScene: SKScene {
     }
     
     public func setupForest() {
-            
+        
         // ========= Camera =========
         
         let camera = SKCameraNode()
@@ -98,6 +103,12 @@ class ForestScene: SKScene {
         namePlantCard?.zPosition = 2
         namePlantCard?.setHide(true)
         self.camera?.addChild(namePlantCard!)
+        
+        teste = SKBalloonNode(imageNamed: "npc_balloon")
+        teste?.position = CGPoint(x: -10, y: 0)
+        teste?.zPosition = 4
+        teste?.setHide(false)
+        self.addChild(teste!)
         
         // ======== Controls =========
         
@@ -122,87 +133,20 @@ class ForestScene: SKScene {
         rightButton.xScale = -1
         self.camera?.addChild(rightButton)
         
-    }
-    
-    func setupBackgroundParallax() {
-        
-        var calculateZPosition: CGFloat = 10
-        let backgroundOrder: [String] = [
-            "layer_4",
-            "layer_3",
-            "layer_2",
-            "layer_1",
-        ]
-        for layer in backgroundOrder {
-            let bgLayer = SKSpriteNode(imageNamed: layer)
-            bgLayer.name = layer
-            bgLayer.position.y = (bgLayer.size.height / 5)
-            bgLayer.zPosition = -calculateZPosition
-            bgLayer.texture?.filteringMode = .nearest
-            self.addChild(bgLayer)
-            
-            parallaxNodes.append(bgLayer)
-            
-            calculateZPosition += 2
-        }
-    }
+        testeButton = SKButtonNode(imageNamed: "arrow_bt", clickAction: { [weak self] in
+            self?.indexText += 1
 
-    func moveBackgroundParallax() {
-        var calculateDuration: CGFloat = 0
-        
-        for parallaxNode in parallaxNodes {
-            parallaxNode.run(.moveTo(x: camera?.position.x ?? 0, duration: calculateDuration))
-            calculateDuration += 0.8
-        }
+            if(self!.indexText >= self!.introText.count) {
+                self?.teste?.removeFromParent()
+                self!.testeButton?.setHideButton(true)
+                // self?.teste?.change(text: "")
+
+            } else {
+                self?.teste?.change(text: (self?.introText[self?.indexText ?? 0])!)
+            }
+        })
+        testeButton?.position = .init(x: 90, y: 0)
+        testeButton?.xScale = -1
+        self.addChild(testeButton!)
     }
-    
-    func createBackground() {
-        for i in 0...3{
-            let ground = SKSpriteNode(imageNamed: "ground")
-            ground.name = "ground"
-            ground.size = CGSize(width: self.scene?.size.width ?? 0, height: 50)
-            ground.texture?.filteringMode = .nearest
-            ground.zPosition = -10
-            ground.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-            ground.position = CGPoint(x: CGFloat(i) * ground.size.width, y: -100)
-            
-            self.addChild(ground)
-        }
-    }
-    
-    
 }
-
-//        let constraint: SKConstraint = .distance(.init(lowerLimit: -100, upperLimit: 100), to: .zero)
-//        self.camera?.constraints = [constraint]
-
-//        let jumpButton = SKButtonNode(imageNamed: "arrow_bt", clickAction: { [weak self] in
-//            self!.internNode?.jump()
-//        })
-//        jumpButton.position = .init(x: 70, y: -205)
-//        self.camera?.addChild(jumpButton)
-
-// ==== Background ====
-//
-//        let background = SKSpriteNode(imageNamed: "ground")
-//        background.texture?.filteringMode = .nearest
-//        background.zPosition = -10
-//        background.position.x = 0
-//        background.position.y = -100
-//        self.addChild(background)
-
-
-//cognitiveButton = SKButtonNode(imageNamed: "botao2", clickAction: { [weak self] in
-//
-//    let secondScene = CognitiveSkills()
-//        secondScene.size = CGSize(width: 1080/2, height: 1920/2)
-//        secondScene.scaleMode = .aspectFit
-//        secondScene.anchorPoint = .init(x: 0.5, y: 0.5)
-//        self?.view?.presentScene(secondScene, transition: .fade(withDuration: 1))
-//
-//        })
-//
-//cognitiveButton?.position = .init(x: 50, y: 10)
-//cognitiveButton?.setScale(0.2)
-//self.addChild(cognitiveButton!)
-//cognitiveButton?.setHideButton(true)

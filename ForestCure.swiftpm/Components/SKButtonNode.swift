@@ -53,5 +53,18 @@ class SKButtonNode: SKNode {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         unclickAction?()
     }
+    
+    public func setHideButton(_ value: Bool) {
+        if(value) {
+            self.run(
+                .hide()
+            )
+        } else {
+            self.run(
+                .unhide()
+            )
+        }
+    }
+
 }
 
