@@ -15,6 +15,14 @@ public class SKBalloonNode: SKNode {
         self.background.texture?.filteringMode = .nearest
         self.background.zPosition = -1
         
+        self.label.verticalAlignmentMode = .center
+        self.label.fontName = "Futura"
+        self.label.fontColor = .white
+        self.label.fontSize = 14
+        self.zPosition += 5
+        self.label.setScale(0.6)
+        
+        
         self.addChild(background)
         self.addChild(label)
     }

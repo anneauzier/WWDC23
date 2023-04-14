@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFoundation
 import SpriteKit
 
 class ForestScene: SKScene {
@@ -17,6 +18,7 @@ class ForestScene: SKScene {
     
     var direction: CGFloat = 0
     var moveSpeed: CGFloat = 2
+    var pause: Bool = false
     
     var infoPlantsButton: SKButtonNode?
     var collectPlantsButton: SKButtonNode?
@@ -25,29 +27,40 @@ class ForestScene: SKScene {
     var namePlantCard: SKBalloonNode?
     var teste: SKBalloonNode?
     
+    var timer: TimerNode?
+    
+    var backgroundForestMusic = SKAudioNode(fileNamed: "forestSound.mp3")
+    var collectPlantsMusic = SKAudioNode(fileNamed: "collectSound.mp3")
+    var cancelPlantsMusic = SKAudioNode(fileNamed: "cancelSound.mp3")
+    
     var parallaxNodes: [SKNode] = []
     
     var introText: [String] = [
-        "texto 1",
         "texto 2",
         "texto 3",
     ]
     var indexText = -1
     
-    var hashAlgoritm: [Int] = []
-    var number = 1
-    
+//    var hashAlgoritm: [Int] = []
+//    var number = 1
+//
     override func sceneDidLoad() {
         
         internNode = InternNode()
         internNode?.name = "intern"
-        internNode?.position.y = -70
+        internNode?.position.y = -90
         self.addChild(internNode!)
+        
+        timer = TimerNode()
+        timer?.position.x = -80
+        timer?.position.y = 80
+        timer?.zPosition = 20
+        self.addChild(timer!)
         
         plantsNode = PlantsNode()
         plantsNode?.name = "plants"
         plantsNode?.zPosition = -1
-        plantsNode?.position.y = -65
+        plantsNode?.position.y = -85
         plantsNode?.position.x = 80
         //        plantsNode?.setScale(0.8)
         self.addChild(plantsNode!)
@@ -55,7 +68,7 @@ class ForestScene: SKScene {
         plants2Node = PlantsNode()
         plants2Node?.name = "plants2"
         plants2Node?.zPosition = -1
-        plants2Node?.position.y = -65
+        plants2Node?.position.y = -85
         plants2Node?.position.x = 200
         self.addChild(plants2Node!)
 
@@ -67,6 +80,7 @@ class ForestScene: SKScene {
         //        self.addChild(labNode!)
         
         setupBackgroundParallax()
+        backgroundForestSound()
     }
     
     override func didMove(to view: SKView) {
@@ -84,6 +98,12 @@ class ForestScene: SKScene {
         }
         self.camera?.run(.moveTo(x: self.internNode?.position.x ?? 0, duration: 0.4))
         moveBackgroundParallax()
+        if pause == true {
+            self.timer?.isPaused = true
+        } else {
+            self.timer?.isPaused = false
+            self.timer!.updateTimer(currentTime: currentTime)
+        }
     }
     
     public func setupForest() {
@@ -104,11 +124,13 @@ class ForestScene: SKScene {
         namePlantCard?.setHide(true)
         self.camera?.addChild(namePlantCard!)
         
-        teste = SKBalloonNode(imageNamed: "npc_balloon")
-        teste?.position = CGPoint(x: -10, y: 0)
-        teste?.zPosition = 4
-        teste?.setHide(false)
-        self.addChild(teste!)
+//        teste = SKBalloonNode(imageNamed: "npc_balloon")
+//        teste?.position = CGPoint(x: -10, y: -80)
+////        teste?.zPosition = 4
+//        teste?.setScale(2)
+//        teste?.setHide(false)
+//        teste?.change(text: "texto 1")
+//        self.addChild(teste!)
         
         // ======== Controls =========
         
@@ -133,20 +155,21 @@ class ForestScene: SKScene {
         rightButton.xScale = -1
         self.camera?.addChild(rightButton)
         
-        testeButton = SKButtonNode(imageNamed: "arrow_bt", clickAction: { [weak self] in
-            self?.indexText += 1
-
-            if(self!.indexText >= self!.introText.count) {
-                self?.teste?.removeFromParent()
-                self!.testeButton?.setHideButton(true)
-                // self?.teste?.change(text: "")
-
-            } else {
-                self?.teste?.change(text: (self?.introText[self?.indexText ?? 0])!)
-            }
-        })
-        testeButton?.position = .init(x: 90, y: 0)
-        testeButton?.xScale = -1
-        self.addChild(testeButton!)
+//        testeButton = SKButtonNode(imageNamed: "arrow_bt", clickAction: { [weak self] in
+//            self?.indexText += 1
+//
+//            if(self!.indexText >= self!.introText.count) {
+//                self?.teste?.removeFromParent()
+//                self?.testeButton?.setHideButton(true)
+//                // self?.teste?.change(text: "")
+//            } else {
+//                self?.teste?.change(text: (self?.introText[self?.indexText ?? 0])!)
+//            }
+//        })
+//        testeButton?.position = .init(x: 90, y: 0)
+//        testeButton?.xScale = -1
+//        self.addChild(testeButton!)
     }
 }
+
+

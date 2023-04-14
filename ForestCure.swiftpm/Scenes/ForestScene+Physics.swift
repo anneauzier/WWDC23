@@ -17,9 +17,11 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.plantsNode?.removeFromParent()
                     self!.collectPlantsButton?.removeFromParent()
                     self?.cancelPlantsButton?.removeFromParent()
-                    self!.hashAlgoritm.append(2)
-                    
-                    print(self!.hashAlgoritm)
+                    self?.collectPlantsSound()
+//                    self!.hashAlgoritm.append(2)
+//                    print(self!.hashAlgoritm)
+                }, unclickAction: {[weak self] in
+                    self?.collectPlantsMusic.removeFromParent()
                 })
                 self?.collectPlantsButton?.position.x = 80
                 self?.collectPlantsButton?.position.y = -30
@@ -30,6 +32,9 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.namePlantCard?.setHide(true)
                     self?.cancelPlantsButton?.removeFromParent()
                     self?.collectPlantsButton?.removeFromParent()
+                    self?.cancelPlantsSound()
+                }, unclickAction: {[weak self] in
+                    self?.cancelPlantsMusic.removeFromParent()
                 })
                 self?.cancelPlantsButton?.position.x = 40
                 self?.cancelPlantsButton?.position.y = -30
@@ -50,13 +55,14 @@ extension ForestScene: SKPhysicsContactDelegate {
                 print("SAIBA MAIS")
                 self?.namePlantCard?.setHide(false)
                 self!.infoPlantsButton?.removeFromParent()
+                self!.pause = true
                 
                 self?.collectPlantsButton = SKButtonNode(imageNamed: "bt", text: "Collect", clickAction: {[weak self] in
                     self?.namePlantCard?.setHide(true)
                     self?.plants2Node?.removeFromParent()
                     self!.collectPlantsButton?.removeFromParent()
-                    self!.hashAlgoritm.append(32)
-                    print(self!.hashAlgoritm)
+//                    self!.hashAlgoritm.append(32)
+//                    print(self!.hashAlgoritm)
                 
                 })
                 self?.collectPlantsButton?.position.x = 200
@@ -75,10 +81,3 @@ extension ForestScene: SKPhysicsContactDelegate {
         self.infoPlantsButton?.removeFromParent()
     }
 }
-
-
-
-//for value in self!.hashAlgoritm {
-//    self!.number *= value
-//    print(self!.number)
-//}
