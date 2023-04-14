@@ -15,9 +15,11 @@ class ForestScene: SKScene {
     var plantsNode: PlantsNode?
     var plants2Node: PlantsNode?
     var labNode: LabNode?
+    var timer: TimerNode?
     
     var direction: CGFloat = 0
     var moveSpeed: CGFloat = 2
+    
     var pause: Bool = false
     
     var infoPlantsButton: SKButtonNode?
@@ -26,8 +28,6 @@ class ForestScene: SKScene {
     var testeButton: SKButtonNode?
     var namePlantCard: SKBalloonNode?
     var teste: SKBalloonNode?
-    
-    var timer: TimerNode?
     
     var backgroundForestMusic = SKAudioNode(fileNamed: "forestSound.mp3")
     var collectPlantsMusic = SKAudioNode(fileNamed: "collectSound.mp3")
@@ -51,11 +51,6 @@ class ForestScene: SKScene {
         internNode?.position.y = -90
         self.addChild(internNode!)
         
-        timer = TimerNode()
-        timer?.position.x = -80
-        timer?.position.y = 80
-        timer?.zPosition = 20
-        self.addChild(timer!)
         
         plantsNode = PlantsNode()
         plantsNode?.name = "plants"
@@ -72,12 +67,12 @@ class ForestScene: SKScene {
         plants2Node?.position.x = 200
         self.addChild(plants2Node!)
 
-        //        labNode = LabNode()
-        //        labNode?.name = "lab"
-        //        labNode?.zPosition = -1
-        //        labNode?.position.y = -65
-        //        labNode?.position.x = -30
-        //        self.addChild(labNode!)
+        labNode = LabNode()
+        labNode?.name = "lab_semfundo"
+        labNode?.zPosition = -1
+        labNode?.position.y = -65
+        labNode?.position.x = -230
+        self.addChild(labNode!)
         
         setupBackgroundParallax()
         backgroundForestSound()
@@ -115,6 +110,12 @@ class ForestScene: SKScene {
         camera.xScale = 0.6
         camera.yScale = 0.6
         self.addChild(camera)
+        
+        timer = TimerNode()
+        timer?.position.x = -80
+        timer?.position.y = 80
+        timer?.zPosition = 20
+        self.camera?.addChild(timer!)
         
         //===== Discover Image ====
         

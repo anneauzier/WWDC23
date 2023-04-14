@@ -41,16 +41,17 @@ extension ForestScene {
     }
     
     func createInfitinyBackground() {
-//        for i in 0...1 {
+//        for i in 0...2 {
             let ground = SKSpriteNode(imageNamed: "ground_extended")
-//            ground.name = "ground"
-//            ground.size = CGSize(width: self.scene?.size.width ?? 0, height: 50)
+            //            ground.name = "ground"
+//            ground.size = CGSize(width: self.scene?.size.width ?? 0, height: 150)
             ground.texture?.filteringMode = .nearest
             ground.zPosition = -10
             ground.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             ground.position.y = 4.5
-//            ground.position = CGPoint(x: CGFloat(i) * ground.size.width, y: -100)
+//            ground.position = CGPoint(x: CGFloat(i) * ground.size.width, y: -50)
             
             self.addChild(ground)
-        }
+//        }
+    }
 }

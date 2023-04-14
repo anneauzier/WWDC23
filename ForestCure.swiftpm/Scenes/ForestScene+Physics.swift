@@ -10,18 +10,20 @@ extension ForestScene: SKPhysicsContactDelegate {
             self.infoPlantsButton = SKButtonNode(imageNamed: "bt", text: "Saiba mais", clickAction: { [weak self] in
                 print("SAIBA MAIS")
                 self?.namePlantCard?.setHide(false)
-                self!.infoPlantsButton?.removeFromParent()
+                self?.infoPlantsButton?.removeFromParent()
+                self?.pause = true
                 
                 self?.collectPlantsButton = SKButtonNode(imageNamed: "bt", text: "Collect", clickAction: {[weak self] in
                     self?.namePlantCard?.setHide(true)
                     self?.plantsNode?.removeFromParent()
-                    self!.collectPlantsButton?.removeFromParent()
+                    self?.collectPlantsButton?.removeFromParent()
                     self?.cancelPlantsButton?.removeFromParent()
+                    self?.infoPlantsButton?.removeFromParent()
                     self?.collectPlantsSound()
-//                    self!.hashAlgoritm.append(2)
-//                    print(self!.hashAlgoritm)
+
                 }, unclickAction: {[weak self] in
                     self?.collectPlantsMusic.removeFromParent()
+                    self!.pause = false
                 })
                 self?.collectPlantsButton?.position.x = 80
                 self?.collectPlantsButton?.position.y = -30
@@ -35,6 +37,7 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.cancelPlantsSound()
                 }, unclickAction: {[weak self] in
                     self?.cancelPlantsMusic.removeFromParent()
+                    self?.pause = false
                 })
                 self?.cancelPlantsButton?.position.x = 40
                 self?.cancelPlantsButton?.position.y = -30
@@ -48,30 +51,18 @@ extension ForestScene: SKPhysicsContactDelegate {
             self.addChild(infoPlantsButton!)
         }
         
-        if contact.bodyA.node?.name == "intern" && contact.bodyB.node?.name == "lab" || contact.bodyA.node?.name == "lab" && contact.bodyB.node?.name == "intern" {
+        if contact.bodyA.node?.name == "intern" && contact.bodyB.node?.name == "lab_semfundo" || contact.bodyA.node?.name == "lab_semfundo" && contact.bodyB.node?.name == "intern" {
             print("contato2")
             
-            self.infoPlantsButton = SKButtonNode(imageNamed: "bt", text: "Saiba mais", clickAction: { [weak self] in
-                print("SAIBA MAIS")
-                self?.namePlantCard?.setHide(false)
-                self!.infoPlantsButton?.removeFromParent()
-                self!.pause = true
-                
-                self?.collectPlantsButton = SKButtonNode(imageNamed: "bt", text: "Collect", clickAction: {[weak self] in
-                    self?.namePlantCard?.setHide(true)
-                    self?.plants2Node?.removeFromParent()
-                    self!.collectPlantsButton?.removeFromParent()
-//                    self!.hashAlgoritm.append(32)
-//                    print(self!.hashAlgoritm)
+            self.infoPlantsButton = SKButtonNode(imageNamed: "bt", text: "Entrar", clickAction: { [weak self] in
+                print("ENTRAR")
+                let labScene = LabScene(size: self!.size)
+                labScene.scaleMode = self!.scaleMode
+                self!.view?.presentScene(labScene)
                 
                 })
-                self?.collectPlantsButton?.position.x = 200
-                self?.collectPlantsButton?.position.y = -30
-                self?.collectPlantsButton?.setScale(0.8)
-                self?.addChild(self!.collectPlantsButton!)
-            })
-            self.infoPlantsButton?.position.y = -40
-            self.infoPlantsButton?.position.x = 200
+            self.infoPlantsButton?.position.y = 20
+            self.infoPlantsButton?.position.x = -250
             self.infoPlantsButton?.setScale(0.8)
             self.addChild(infoPlantsButton!)
         }
@@ -81,3 +72,7 @@ extension ForestScene: SKPhysicsContactDelegate {
         self.infoPlantsButton?.removeFromParent()
     }
 }
+
+
+// self!.hashAlgoritm.append(2)
+// print(self!.hashAlgoritm)

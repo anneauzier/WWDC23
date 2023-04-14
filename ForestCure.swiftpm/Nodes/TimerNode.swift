@@ -12,14 +12,14 @@ class TimerNode: SKNode {
     
     var label: SKLabelNode = SKLabelNode()
     var lastUpdatedTime: TimeInterval = 0.0
-    var changeTime: TimeInterval = 0.4 // pulsacao
-    var seconds: Int = 59
+    var changeTime: TimeInterval = 1 // pulsacao
+    var seconds: Int = 60
     var minutes: Int = 1
    
     override init() {
         super.init()
         label.text = "0\(minutes):00"
-        label.fontName = "Neucha"
+        label.fontName = "Futura"
         label.fontColor = SKColor(.white)
         label.fontSize = 20
 //      label.position.y -= 20
@@ -32,7 +32,7 @@ class TimerNode: SKNode {
     func updateTimer(currentTime : TimeInterval) {
         if (currentTime > lastUpdatedTime) {
             if lastUpdatedTime > 0 {
-                if seconds == 59 {
+                if seconds == 60 {
                     minutes -= 1
                     if minutes < 0 {
                         minutes = 0

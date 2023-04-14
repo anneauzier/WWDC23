@@ -12,7 +12,7 @@ class LabNode: SKNode {
     var spriteLab: SKSpriteNode
     
     override init() {
-        spriteLab = SKSpriteNode(imageNamed: "lab")
+        spriteLab = SKSpriteNode(imageNamed: "lab_semfundo")
         super.init()
         
         let physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteLab.size.width, height: spriteLab.size.height))
