@@ -9,22 +9,25 @@ import Foundation
 import SpriteKit
 
 class LabScene: SKScene {
+    
     private var currentNode: SKNode?
     
-    override func didMove(to view: SKView) {
-        let node = SKSpriteNode(
-            color: .red,
-            size: CGSize(width: 50, height: 50)
-        )
-        node.name = "draggable"
-        self.addChild(node)
+    var bottleNode: BottleNode?
+    var plantsLabNode: LabPlantsNode?
+
+    override func sceneDidLoad() {
+        bottleNode = BottleNode()
+        bottleNode?.name = "bottle"
+        bottleNode?.position.x = -90
+        self.addChild(bottleNode!)
         
-        let blueNode = SKSpriteNode(
-            color: .blue,
-            size: CGSize(width: 50, height: 50)
-        )
-        blueNode.name = "draggable"
-        self.addChild(blueNode)
+        plantsLabNode = LabPlantsNode()
+        plantsLabNode?.name = "plantsLab"
+        self.addChild(plantsLabNode!)
+    }
+    
+    override func didMove(to view: SKView) {
+        self.physicsWorld.contactDelegate = self
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -32,8 +35,8 @@ class LabScene: SKScene {
             let location = touch.location(in: self)
             
             let touchesNodes = self.nodes(at: location)
-            for node in touchesNodes.reversed() {
-                if node.name == "draggable" {
+            for node in touchesNodes {
+                if node.name == "plantsLab" {
                     self.currentNode = node
                 }
             }

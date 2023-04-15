@@ -20,7 +20,7 @@ class ForestScene: SKScene {
     var direction: CGFloat = 0
     var moveSpeed: CGFloat = 2
     
-    var pause: Bool = false
+    var pauseTime: Bool = false
     
     var infoPlantsButton: SKButtonNode?
     var collectPlantsButton: SKButtonNode?
@@ -48,14 +48,14 @@ class ForestScene: SKScene {
         
         internNode = InternNode()
         internNode?.name = "intern"
-        internNode?.position.y = -90
+        internNode?.position.y = -80
         self.addChild(internNode!)
         
         
         plantsNode = PlantsNode()
         plantsNode?.name = "plants"
         plantsNode?.zPosition = -1
-        plantsNode?.position.y = -85
+        plantsNode?.position.y = -73
         plantsNode?.position.x = 80
         //        plantsNode?.setScale(0.8)
         self.addChild(plantsNode!)
@@ -63,14 +63,14 @@ class ForestScene: SKScene {
         plants2Node = PlantsNode()
         plants2Node?.name = "plants2"
         plants2Node?.zPosition = -1
-        plants2Node?.position.y = -85
+        plants2Node?.position.y = -73
         plants2Node?.position.x = 200
         self.addChild(plants2Node!)
 
         labNode = LabNode()
         labNode?.name = "lab_semfundo"
         labNode?.zPosition = -1
-        labNode?.position.y = -65
+        labNode?.position.y = -55
         labNode?.position.x = -230
         self.addChild(labNode!)
         
@@ -93,7 +93,7 @@ class ForestScene: SKScene {
         }
         self.camera?.run(.moveTo(x: self.internNode?.position.x ?? 0, duration: 0.4))
         moveBackgroundParallax()
-        if pause == true {
+        if pauseTime == true {
             self.timer?.isPaused = true
         } else {
             self.timer?.isPaused = false
@@ -110,6 +110,8 @@ class ForestScene: SKScene {
         camera.xScale = 0.6
         camera.yScale = 0.6
         self.addChild(camera)
+        let constraint: SKConstraint = .distance(.init(lowerLimit: -100, upperLimit: 1000), to: .zero)
+        self.camera?.constraints = [constraint]
         
         timer = TimerNode()
         timer?.position.x = -80

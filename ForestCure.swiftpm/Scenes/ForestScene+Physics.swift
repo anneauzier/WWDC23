@@ -11,7 +11,7 @@ extension ForestScene: SKPhysicsContactDelegate {
                 print("SAIBA MAIS")
                 self?.namePlantCard?.setHide(false)
                 self?.infoPlantsButton?.removeFromParent()
-                self?.pause = true
+                self?.pauseTime = true
                 
                 self?.collectPlantsButton = SKButtonNode(imageNamed: "bt", text: "Collect", clickAction: {[weak self] in
                     self?.namePlantCard?.setHide(true)
@@ -23,7 +23,7 @@ extension ForestScene: SKPhysicsContactDelegate {
 
                 }, unclickAction: {[weak self] in
                     self?.collectPlantsMusic.removeFromParent()
-                    self!.pause = false
+                    self!.pauseTime = false
                 })
                 self?.collectPlantsButton?.position.x = 80
                 self?.collectPlantsButton?.position.y = -30
@@ -37,7 +37,7 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.cancelPlantsSound()
                 }, unclickAction: {[weak self] in
                     self?.cancelPlantsMusic.removeFromParent()
-                    self?.pause = false
+                    self?.pauseTime = false
                 })
                 self?.cancelPlantsButton?.position.x = 40
                 self?.cancelPlantsButton?.position.y = -30

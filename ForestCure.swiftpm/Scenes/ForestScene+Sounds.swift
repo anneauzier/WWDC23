@@ -11,7 +11,7 @@ import SpriteKit
 extension ForestScene {
     
     func backgroundForestSound() {
-        backgroundForestMusic.run(SKAction.changeVolume(to: Float(0.1), duration: 0.15))
+        backgroundForestMusic.run(SKAction.changeVolume(to: Float(0.8), duration: 0))
         backgroundForestMusic.run(.play())
         self.addChild(backgroundForestMusic)
     }
@@ -27,4 +27,6 @@ extension ForestScene {
         cancelPlantsMusic.run(.play())
         self.addChild(cancelPlantsMusic)
     }
+   
 }
+

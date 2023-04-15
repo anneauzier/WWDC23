@@ -10,14 +10,33 @@ import SpriteKit
 
 class StartScene: SKScene {
     
+    var startButton: SKButtonNode?
+    var startInitialSceneMusic = SKAudioNode(fileNamed: "startSound.mp3")
+    
     override func sceneDidLoad() {
+        let backgroundStart = SKSpriteNode(imageNamed: "startImage")
+        backgroundStart.texture?.filteringMode = .nearest
+        backgroundStart.zPosition = -10
+        backgroundStart.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        backgroundStart.scene?.scaleMode = .aspectFit
+        self.addChild(backgroundStart)
         
-        let startButton = SKButtonNode(imageNamed: "bt", clickAction: {[weak self] in
+        startInitialSceneSound()
+        
+        startButton = SKButtonNode(imageNamed: "playButton", clickAction: {[weak self] in
             let startScene = ForestScene(size: self!.size)
             startScene.scaleMode = self!.scaleMode
             self!.view?.presentScene(startScene)
         })
-        startButton.position = CGPoint(x: 0.5, y: 0.5)
-        self.addChild(startButton)
+        startButton?.position.x = -180
+        startButton?.position.y = -50
+        self.addChild(startButton!)
     }
+    func startInitialSceneSound() {
+        startInitialSceneMusic.run(SKAction.changeVolume(by: Float(0.8), duration: 0.08))
+        startInitialSceneMusic.run(.play())
+        self.addChild(startInitialSceneMusic)
+    }
+    
+    
 }
