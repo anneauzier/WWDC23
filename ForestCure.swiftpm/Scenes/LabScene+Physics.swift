@@ -15,9 +15,5 @@ extension LabScene: SKPhysicsContactDelegate {
             self.bottleNode?.bottleNode.color = .green
             self.plantsLabNode?.removeFromParent()
         }
-        
-        func didEnd(_ contact: SKPhysicsContact) {
-            print("NAOOO TOQUEIII")
-        }
     }
 }

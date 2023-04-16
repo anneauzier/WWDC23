@@ -12,28 +12,34 @@ import SpriteKit
 class ForestScene: SKScene {
     
     var internNode: InternNode?
-    var plantsNode: PlantsNode?
-    var plants2Node: PlantsNode?
+    var gaucoNode: PlantsNode?
+    var andirobaNode: AndirobaNode?
+    var boldoNode: BoldoNode?
     var labNode: LabNode?
     var timer: TimerNode?
     
-    var direction: CGFloat = 0
-    var moveSpeed: CGFloat = 2
-    
-    var pauseTime: Bool = false
-    
+    var rightButton: SKButtonNode?
+    var leftButton: SKButtonNode?
     var infoPlantsButton: SKButtonNode?
     var collectPlantsButton: SKButtonNode?
     var cancelPlantsButton: SKButtonNode?
     var testeButton: SKButtonNode?
-    var namePlantCard: SKBalloonNode?
+    
+    var guacoCard: SKBalloonNode?
+    var andirobaCard: SKBalloonNode?
+    var boldoCard: SKBalloonNode?
     var teste: SKBalloonNode?
     
-    var backgroundForestMusic = SKAudioNode(fileNamed: "forestSound.mp3")
+    var backgroundForestMusic = SKAudioNode(fileNamed: "startSound.mp3")
     var collectPlantsMusic = SKAudioNode(fileNamed: "collectSound.mp3")
     var cancelPlantsMusic = SKAudioNode(fileNamed: "cancelSound.mp3")
     
+    var direction: CGFloat = 0
+    var moveSpeed: CGFloat = 2
+    var pauseTime: Bool = false
     var parallaxNodes: [SKNode] = []
+    
+    public var hasGuaco: Bool = false
     
     var introText: [String] = [
         "texto 2",
@@ -41,31 +47,32 @@ class ForestScene: SKScene {
     ]
     var indexText = -1
     
-//    var hashAlgoritm: [Int] = []
-//    var number = 1
-//
     override func sceneDidLoad() {
-        
         internNode = InternNode()
         internNode?.name = "intern"
         internNode?.position.y = -80
         self.addChild(internNode!)
         
+        gaucoNode = PlantsNode()
+        gaucoNode?.name = "guaco"
+        gaucoNode?.zPosition = -1
+        gaucoNode?.position.y = -75
+        gaucoNode?.position.x = 80
+        self.addChild(gaucoNode!)
         
-        plantsNode = PlantsNode()
-        plantsNode?.name = "plants"
-        plantsNode?.zPosition = -1
-        plantsNode?.position.y = -73
-        plantsNode?.position.x = 80
-        //        plantsNode?.setScale(0.8)
-        self.addChild(plantsNode!)
+        andirobaNode = AndirobaNode()
+        andirobaNode?.name = "andiroba"
+        andirobaNode?.zPosition = -1
+        andirobaNode?.position.y = -75
+        andirobaNode?.position.x = 200
+        self.addChild(andirobaNode!)
         
-        plants2Node = PlantsNode()
-        plants2Node?.name = "plants2"
-        plants2Node?.zPosition = -1
-        plants2Node?.position.y = -73
-        plants2Node?.position.x = 200
-        self.addChild(plants2Node!)
+        boldoNode = BoldoNode()
+        boldoNode?.name = "boldo"
+        boldoNode?.zPosition = -1
+        boldoNode?.position.y = -75
+        boldoNode?.position.x = 400
+        self.addChild(boldoNode!)
 
         labNode = LabNode()
         labNode?.name = "lab_semfundo"
@@ -82,7 +89,6 @@ class ForestScene: SKScene {
         setupForest()
         self.scaleMode = .aspectFill
         self.physicsWorld.contactDelegate = self
-        
         createInfitinyBackground()
     }
     
@@ -114,18 +120,34 @@ class ForestScene: SKScene {
         self.camera?.constraints = [constraint]
         
         timer = TimerNode()
-        timer?.position.x = -80
+        timer?.position.x = -300
         timer?.position.y = 80
-        timer?.zPosition = 20
+        timer?.zPosition = 2
         self.camera?.addChild(timer!)
         
         //===== Discover Image ====
         
-        namePlantCard = SKBalloonNode(imageNamed: "npc_balloon")
-        namePlantCard?.position = CGPoint(x: 0, y: 0)
-        namePlantCard?.zPosition = 2
-        namePlantCard?.setHide(true)
-        self.camera?.addChild(namePlantCard!)
+        guacoCard = SKBalloonNode(imageNamed: "guaco_card")
+        guacoCard?.position = CGPoint(x: 80, y: 0)
+        guacoCard?.zPosition = 2
+        guacoCard?.setScale(0.6)
+        guacoCard?.setHide(true)
+//        guacoCard?.run(SKAction.moveTo(y: -120, duration: 0.8))
+        self.addChild(guacoCard!)
+        
+        andirobaCard = SKBalloonNode(imageNamed: "andiroba_card")
+        andirobaCard?.position = CGPoint(x: 200 , y: 0)
+        andirobaCard?.zPosition = 2
+        andirobaCard?.setScale(0.6)
+        andirobaCard?.setHide(true)
+        self.addChild(andirobaCard!)
+        
+        boldoCard = SKBalloonNode(imageNamed: "boldo_card")
+        boldoCard?.position = CGPoint(x: 400, y: 0)
+        boldoCard?.zPosition = 2
+        boldoCard?.setScale(0.6)
+        boldoCard?.setHide(true)
+        self.addChild(boldoCard!)
         
 //        teste = SKBalloonNode(imageNamed: "npc_balloon")
 //        teste?.position = CGPoint(x: -10, y: -80)
@@ -137,26 +159,26 @@ class ForestScene: SKScene {
         
         // ======== Controls =========
         
-        let leftButton = SKButtonNode(imageNamed: "arrow_bt", clickAction: { [weak self] in
+        leftButton = SKButtonNode(imageNamed: "arrow_bt", clickAction: { [weak self] in
             self?.direction = -1
             self?.internNode?.playAnim(state: .walk)
         }, unclickAction: { [weak self] in
             self?.direction = 0
             self?.internNode?.playAnim(state: .idle)
         })
-        leftButton.position = .init(x: -260, y: -95)
-        self.camera?.addChild(leftButton)
+        leftButton?.position = .init(x: -260, y: -95)
+        self.camera?.addChild(leftButton!)
         
-        let rightButton = SKButtonNode(imageNamed: "arrow_bt", clickAction: { [weak self] in
+        rightButton = SKButtonNode(imageNamed: "arrow_bt", clickAction: { [weak self] in
             self?.direction = 1
             self?.internNode?.playAnim(state: .walk)
         }, unclickAction: { [weak self] in
             self?.direction = 0
             self?.internNode?.playAnim(state: .idle)
         })
-        rightButton.position = .init(x: -230, y: -95)
-        rightButton.xScale = -1
-        self.camera?.addChild(rightButton)
+        rightButton?.position = .init(x: -230, y: -95)
+        rightButton?.xScale = -1
+        self.camera?.addChild(rightButton!)
         
 //        testeButton = SKButtonNode(imageNamed: "arrow_bt", clickAction: { [weak self] in
 //            self?.indexText += 1

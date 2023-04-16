@@ -11,7 +11,7 @@ import SpriteKit
 class StartScene: SKScene {
     
     var startButton: SKButtonNode?
-    var startInitialSceneMusic = SKAudioNode(fileNamed: "startSound.mp3")
+    var startInitialSceneMusic = SKAudioNode(fileNamed: "forestSound.mp3")
     
     override func sceneDidLoad() {
         let backgroundStart = SKSpriteNode(imageNamed: "startImage")
@@ -32,11 +32,10 @@ class StartScene: SKScene {
         startButton?.position.y = -50
         self.addChild(startButton!)
     }
+    
     func startInitialSceneSound() {
         startInitialSceneMusic.run(SKAction.changeVolume(by: Float(0.8), duration: 0.08))
         startInitialSceneMusic.run(.play())
         self.addChild(startInitialSceneMusic)
     }
-    
-    
 }
