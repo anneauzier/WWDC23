@@ -20,8 +20,9 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.cancelPlantsButton?.removeFromParent()
                     self?.infoPlantsButton?.removeFromParent()
                     self?.collectPlantsSound()
+                    ForestScene.shared.plantsCollected.append("guacoo")
                     
-                }, unclickAction: {[weak self] in
+                }, unclickAction: { [weak self] in
                     self?.collectPlantsMusic.removeFromParent()
                     self!.pauseTime = false
                 })
@@ -67,6 +68,7 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.cancelPlantsButton?.removeFromParent()
                     self?.infoPlantsButton?.removeFromParent()
                     self?.collectPlantsSound()
+                    ForestScene.shared.plantsCollected.append("andirobaa")
                     
                 }, unclickAction: {[weak self] in
                     self?.collectPlantsMusic.removeFromParent()
@@ -113,8 +115,8 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.collectPlantsButton?.removeFromParent()
                     self?.cancelPlantsButton?.removeFromParent()
                     self?.infoPlantsButton?.removeFromParent()
-                    
                     self?.collectPlantsSound()
+                    ForestScene.shared.plantsCollected.append("boldoo")
                     
                 }, unclickAction: {[weak self] in
                     self?.collectPlantsMusic.removeFromParent()
@@ -156,7 +158,7 @@ extension ForestScene: SKPhysicsContactDelegate {
                 labScene.scaleMode = .aspectFill
                 labScene.anchorPoint = .init(x: 0.5, y: 0.5)
                 self!.view?.presentScene(labScene)
-                
+//                self?.backgroundForestMusic.removeFromParent()
             })
             self.infoPlantsButton?.position.y = 20
             self.infoPlantsButton?.position.x = -250

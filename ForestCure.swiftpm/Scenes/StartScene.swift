@@ -34,7 +34,7 @@ class StartScene: SKScene {
     }
     
     func startInitialSceneSound() {
-        startInitialSceneMusic.run(SKAction.changeVolume(by: Float(0.8), duration: 0.08))
+        startInitialSceneMusic.run(SKAction.changeVolume(by: Float(0.5), duration: 0.08))
         startInitialSceneMusic.run(.play())
         self.addChild(startInitialSceneMusic)
     }

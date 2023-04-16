@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import AVFoundation
 import SpriteKit
+import SwiftUI
 
 class ForestScene: SKScene {
     
@@ -37,9 +37,11 @@ class ForestScene: SKScene {
     var direction: CGFloat = 0
     var moveSpeed: CGFloat = 2
     var pauseTime: Bool = false
-    var parallaxNodes: [SKNode] = []
     
-    public var hasGuaco: Bool = false
+    public static let shared = ForestScene()
+    var plantsCollected: [String] = []
+    
+    var parallaxNodes: [SKNode] = []
     
     var introText: [String] = [
         "texto 2",

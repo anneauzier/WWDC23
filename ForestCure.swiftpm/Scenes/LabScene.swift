@@ -11,29 +11,46 @@ import SpriteKit
 class LabScene: SKScene {
     
     private var currentNode: SKNode?
+    
     var bottleNode: BottleNode?
-    var plantsLabNode: LabPlantsNode?
-    var connectWithForest = ForestScene()
+    var guacoLabNode: PlantsNode?
+    var andirobaLabNode: AndirobaNode?
+    var boldoLabNode: BoldoNode?
+    
+    var backgroundLabMusic = SKAudioNode(fileNamed: "labSound.mp3")
     
     override func sceneDidLoad() {
         bottleNode = BottleNode()
         bottleNode?.name = "bottle"
         bottleNode?.position.x = -90
         self.addChild(bottleNode!)
-
+        
         self.scaleMode = .aspectFill
         
-        print("\(connectWithForest.hasGuaco)")
+        backgroundLabSound()
     }
     
     override func didMove(to view: SKView) {
         setupLab()
         self.physicsWorld.contactDelegate = self
         
-        if connectWithForest.hasGuaco == true {
-            plantsLabNode = LabPlantsNode()
-            plantsLabNode?.name = "plantsLab"
-            self.addChild(plantsLabNode!)
+        if ForestScene.shared.plantsCollected.contains("guacoo") {
+            guacoLabNode = PlantsNode()
+            guacoLabNode?.name = "guacoplantLab"
+            guacoLabNode?.position = CGPoint(x: 50, y: 0)
+            self.addChild(guacoLabNode!)
+        }
+        if ForestScene.shared.plantsCollected.contains("andirobaa") {
+            andirobaLabNode = AndirobaNode()
+            andirobaLabNode?.name = "andirobaplantLab"
+            andirobaLabNode?.position = CGPoint(x: 100, y: -30)
+            self.addChild(andirobaLabNode!)
+        }
+        if ForestScene.shared.plantsCollected.contains("boldoo") {
+            boldoLabNode = BoldoNode()
+            boldoLabNode?.name = "boldoplantLab"
+            boldoLabNode?.position = CGPoint(x: 200, y: -60)
+            self.addChild(boldoLabNode!)
         }
         
     }
@@ -44,6 +61,11 @@ class LabScene: SKScene {
         background.zPosition = -10
         self.addChild(background)
     }
+    func backgroundLabSound() {
+        backgroundLabMusic.run(SKAction.changeVolume(to: Float(0.5), duration: 0))
+        backgroundLabMusic.run(.play())
+        self.addChild(backgroundLabMusic)
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
@@ -51,7 +73,7 @@ class LabScene: SKScene {
             
             let touchesNodes = self.nodes(at: location)
             for node in touchesNodes {
-                if node.name == "plantsLab" {
+                if node.name == "guacoplantLab" || node.name == "andirobaplantLab" || node.name == "boldoplantLab" {
                     self.currentNode = node
                 }
             }

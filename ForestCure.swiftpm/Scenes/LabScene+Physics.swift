@@ -10,10 +10,20 @@ import SpriteKit
 
 extension LabScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
-        if contact.bodyA.node?.name == "bottle" && contact.bodyB.node?.name == "plantsLab" || contact.bodyA.node?.name == "plantsLab" && contact.bodyB.node?.name == "bottle" {
+        if contact.bodyA.node?.name == "bottle" && contact.bodyB.node?.name == "guacoplantLab" || contact.bodyA.node?.name == "guacoplantLab" && contact.bodyB.node?.name == "bottle" {
             print("TOQUEIII")
             self.bottleNode?.bottleNode.color = .green
-            self.plantsLabNode?.removeFromParent()
+            self.guacoLabNode?.removeFromParent()
+        }
+        if contact.bodyA.node?.name == "bottle" && contact.bodyB.node?.name == "andirobaplantLab" || contact.bodyA.node?.name == "andirobaplantLab" && contact.bodyB.node?.name == "bottle" {
+            print("TOQUEIII")
+            self.bottleNode?.bottleNode.color = .green
+            self.andirobaLabNode?.removeFromParent()
+        }
+        if contact.bodyA.node?.name == "bottle" && contact.bodyB.node?.name == "boldoplantLab" || contact.bodyA.node?.name == "boldoplantLab" && contact.bodyB.node?.name == "bottle" {
+            print("TOQUEIII")
+            self.bottleNode?.bottleNode.color = .green
+            self.boldoLabNode?.removeFromParent()
         }
     }
 }
