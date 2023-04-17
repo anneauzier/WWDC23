@@ -16,6 +16,8 @@ class LabScene: SKScene {
     var guacoLabNode: PlantsNode?
     var andirobaLabNode: AndirobaNode?
     var boldoLabNode: BoldoNode?
+    var canaLabNode: CanaNode?
+    var card: SKBalloonNode?
     
     var backgroundLabMusic = SKAudioNode(fileNamed: "labSound.mp3")
     
@@ -52,6 +54,12 @@ class LabScene: SKScene {
             boldoLabNode?.position = CGPoint(x: 200, y: -60)
             self.addChild(boldoLabNode!)
         }
+        if ForestScene.shared.plantsCollected.contains("canaa") {
+            canaLabNode = CanaNode()
+            canaLabNode?.name = "canaplantLab"
+            canaLabNode?.position = CGPoint(x: 300, y: -70)
+            self.addChild(canaLabNode!)
+        }
         
     }
     
@@ -60,6 +68,13 @@ class LabScene: SKScene {
         background.texture?.filteringMode = .nearest
         background.zPosition = -10
         self.addChild(background)
+        
+        card = SKBalloonNode(imageNamed: "npc_balloon")
+        card?.position = CGPoint(x: 200 , y: 0)
+        card?.zPosition = 2
+        card?.setScale(0.6)
+        card?.setHide(true)
+        self.addChild(card!)
     }
     func backgroundLabSound() {
         backgroundLabMusic.run(SKAction.changeVolume(to: Float(0.5), duration: 0))
@@ -73,7 +88,7 @@ class LabScene: SKScene {
             
             let touchesNodes = self.nodes(at: location)
             for node in touchesNodes {
-                if node.name == "guacoplantLab" || node.name == "andirobaplantLab" || node.name == "boldoplantLab" {
+                if node.name == "guacoplantLab" || node.name == "andirobaplantLab" || node.name == "boldoplantLab" || node.name == "canaplantLab" {
                     self.currentNode = node
                 }
             }

@@ -24,11 +24,8 @@ class LabNode: SKNode {
         physicsBody.contactTestBitMask = 1
         
         spriteLab.texture?.filteringMode = .nearest
-        
         self.physicsBody = physicsBody
-        
         self.addChild(spriteLab)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

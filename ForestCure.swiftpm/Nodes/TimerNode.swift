@@ -22,7 +22,7 @@ class TimerNode: SKNode {
         label.fontName = "Futura"
         label.fontColor = SKColor(.white)
         label.fontSize = 20
-//      label.position.y -= 20
+        label.position.x = -20
         self.addChild(label)
     }
     required init?(coder aDecoder: NSCoder) {

@@ -16,6 +16,7 @@ class BottleNode: SKNode {
             color: .blue,
             size: CGSize(width: 50, height: 50)
         )
+    
         super.init()
         
         let physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: bottleNode.size.width, height: bottleNode.size.height))
@@ -29,6 +30,7 @@ class BottleNode: SKNode {
         bottleNode.texture?.filteringMode = .nearest
         self.physicsBody = physicsBody
         self.addChild(bottleNode)
+        
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

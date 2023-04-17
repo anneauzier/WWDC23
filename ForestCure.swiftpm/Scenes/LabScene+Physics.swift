@@ -14,16 +14,25 @@ extension LabScene: SKPhysicsContactDelegate {
             print("TOQUEIII")
             self.bottleNode?.bottleNode.color = .green
             self.guacoLabNode?.removeFromParent()
+            
+            if bottleNode!.bottleNode.color == .green {
+                card?.setHide(false)
+            }
         }
         if contact.bodyA.node?.name == "bottle" && contact.bodyB.node?.name == "andirobaplantLab" || contact.bodyA.node?.name == "andirobaplantLab" && contact.bodyB.node?.name == "bottle" {
-            print("TOQUEIII")
+            print("TOQUEIII andi")
             self.bottleNode?.bottleNode.color = .green
             self.andirobaLabNode?.removeFromParent()
         }
         if contact.bodyA.node?.name == "bottle" && contact.bodyB.node?.name == "boldoplantLab" || contact.bodyA.node?.name == "boldoplantLab" && contact.bodyB.node?.name == "bottle" {
-            print("TOQUEIII")
+            print("TOQUEIII boldo")
             self.bottleNode?.bottleNode.color = .green
             self.boldoLabNode?.removeFromParent()
+        }
+        if contact.bodyA.node?.name == "bottle" && contact.bodyB.node?.name == "canaplantLab" || contact.bodyA.node?.name == "canaplantLab" && contact.bodyB.node?.name == "bottle" {
+            print("TOQUEIII cana")
+            self.bottleNode?.bottleNode.color = .green
+            self.canaLabNode?.removeFromParent()
         }
     }
 }

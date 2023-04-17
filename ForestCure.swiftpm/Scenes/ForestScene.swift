@@ -15,6 +15,7 @@ class ForestScene: SKScene {
     var gaucoNode: PlantsNode?
     var andirobaNode: AndirobaNode?
     var boldoNode: BoldoNode?
+    var canaNode: CanaNode?
     var labNode: LabNode?
     var timer: TimerNode?
     
@@ -28,7 +29,8 @@ class ForestScene: SKScene {
     var guacoCard: SKBalloonNode?
     var andirobaCard: SKBalloonNode?
     var boldoCard: SKBalloonNode?
-    var teste: SKBalloonNode?
+    var canaCard: SKBalloonNode?
+    var cientist: SKBalloonNode?
     
     var backgroundForestMusic = SKAudioNode(fileNamed: "startSound.mp3")
     var collectPlantsMusic = SKAudioNode(fileNamed: "collectSound.mp3")
@@ -44,7 +46,7 @@ class ForestScene: SKScene {
     var parallaxNodes: [SKNode] = []
     
     var introText: [String] = [
-        "texto 2",
+        "My name is Steve, I'm a scientist, and I'm very relieved \nthat you showed up here  to help me create natural remedies to treat common diseases \nhere in the Amazon region!",
         "texto 3",
     ]
     var indexText = -1
@@ -54,13 +56,6 @@ class ForestScene: SKScene {
         internNode?.name = "intern"
         internNode?.position.y = -80
         self.addChild(internNode!)
-        
-        gaucoNode = PlantsNode()
-        gaucoNode?.name = "guaco"
-        gaucoNode?.zPosition = -1
-        gaucoNode?.position.y = -75
-        gaucoNode?.position.x = 80
-        self.addChild(gaucoNode!)
         
         andirobaNode = AndirobaNode()
         andirobaNode?.name = "andiroba"
@@ -75,7 +70,21 @@ class ForestScene: SKScene {
         boldoNode?.position.y = -75
         boldoNode?.position.x = 400
         self.addChild(boldoNode!)
-
+        
+        canaNode = CanaNode()
+        canaNode?.name = "cana"
+        canaNode?.zPosition = -1
+        canaNode?.position.y = -75
+        canaNode?.position.x = 600
+        self.addChild(canaNode!)
+        
+        gaucoNode = PlantsNode()
+        gaucoNode?.name = "guaco"
+        gaucoNode?.zPosition = -1
+        gaucoNode?.position.y = -72
+        gaucoNode?.position.x = 800
+        self.addChild(gaucoNode!)
+        
         labNode = LabNode()
         labNode?.name = "lab_semfundo"
         labNode?.zPosition = -1
@@ -111,6 +120,12 @@ class ForestScene: SKScene {
     
     public func setupForest() {
         
+        let background = SKSpriteNode(imageNamed: "black")
+        background.texture?.filteringMode = .nearest
+        background.zPosition = -1
+        background.position = CGPoint(x: 0, y: 0)
+        self.addChild(background)
+        
         // ========= Camera =========
         
         let camera = SKCameraNode()
@@ -129,73 +144,87 @@ class ForestScene: SKScene {
         
         //===== Discover Image ====
         
-        guacoCard = SKBalloonNode(imageNamed: "guaco_card")
-        guacoCard?.position = CGPoint(x: 80, y: 0)
-        guacoCard?.zPosition = 2
-        guacoCard?.setScale(0.6)
-        guacoCard?.setHide(true)
-//        guacoCard?.run(SKAction.moveTo(y: -120, duration: 0.8))
-        self.addChild(guacoCard!)
-        
         andirobaCard = SKBalloonNode(imageNamed: "andiroba_card")
-        andirobaCard?.position = CGPoint(x: 200 , y: 0)
+        andirobaCard?.position = CGPoint(x: 200 , y: 15)
         andirobaCard?.zPosition = 2
-        andirobaCard?.setScale(0.6)
+        andirobaCard?.setScale(0.67)
         andirobaCard?.setHide(true)
         self.addChild(andirobaCard!)
         
         boldoCard = SKBalloonNode(imageNamed: "boldo_card")
-        boldoCard?.position = CGPoint(x: 400, y: 0)
+        boldoCard?.position = CGPoint(x: 400, y: 15)
         boldoCard?.zPosition = 2
-        boldoCard?.setScale(0.6)
+        boldoCard?.setScale(0.67)
         boldoCard?.setHide(true)
         self.addChild(boldoCard!)
         
-//        teste = SKBalloonNode(imageNamed: "npc_balloon")
-//        teste?.position = CGPoint(x: -10, y: -80)
-////        teste?.zPosition = 4
-//        teste?.setScale(2)
-//        teste?.setHide(false)
-//        teste?.change(text: "texto 1")
-//        self.addChild(teste!)
+        canaCard = SKBalloonNode(imageNamed: "cana_card")
+        canaCard?.position = CGPoint(x: 600, y: 15)
+        canaCard?.zPosition = 2
+        canaCard?.setScale(0.67)
+        canaCard?.setHide(true)
+        self.addChild(canaCard!)
+        
+        guacoCard = SKBalloonNode(imageNamed: "guaco_card")
+        guacoCard?.position = CGPoint(x: 800, y: 15)
+        guacoCard?.zPosition = 2
+        guacoCard?.setScale(0.67)
+        guacoCard?.setHide(true)
+        //        guacoCard?.run(SKAction.moveTo(y: -120, duration: 0.8))
+        self.addChild(guacoCard!)
+        
+        cientist = SKBalloonNode(imageNamed: "cientist")
+        cientist?.position.x = -4
+        cientist?.zPosition = 4
+        cientist?.setScale(0.8)
+//        cientist?.scene?.scaleMode = .resizeFill
+        self.pauseTime = true
+        cientist?.setHide(false)
+        cientist?.change(text: "Hello, trainee! Welcome to my Institute!")
+        self.addChild(cientist!)
         
         // ======== Controls =========
         
-        leftButton = SKButtonNode(imageNamed: "arrow_bt", clickAction: { [weak self] in
+        leftButton = SKButtonNode(imageNamed: "left1", clickAction: { [weak self] in
             self?.direction = -1
             self?.internNode?.playAnim(state: .walk)
         }, unclickAction: { [weak self] in
             self?.direction = 0
             self?.internNode?.playAnim(state: .idle)
         })
-        leftButton?.position = .init(x: -260, y: -95)
+        leftButton?.position = .init(x: -320, y: -160)
+        leftButton?.setScale(0.2)
+        leftButton?.zPosition = 2
         self.camera?.addChild(leftButton!)
         
-        rightButton = SKButtonNode(imageNamed: "arrow_bt", clickAction: { [weak self] in
+        rightButton = SKButtonNode(imageNamed: "right1", clickAction: { [weak self] in
             self?.direction = 1
             self?.internNode?.playAnim(state: .walk)
         }, unclickAction: { [weak self] in
             self?.direction = 0
             self?.internNode?.playAnim(state: .idle)
         })
-        rightButton?.position = .init(x: -230, y: -95)
-        rightButton?.xScale = -1
+        rightButton?.position = .init(x: -230, y: -160)
+        rightButton?.setScale(0.2)
+        rightButton?.zPosition = 2
         self.camera?.addChild(rightButton!)
         
-//        testeButton = SKButtonNode(imageNamed: "arrow_bt", clickAction: { [weak self] in
-//            self?.indexText += 1
-//
-//            if(self!.indexText >= self!.introText.count) {
-//                self?.teste?.removeFromParent()
-//                self?.testeButton?.setHideButton(true)
-//                // self?.teste?.change(text: "")
-//            } else {
-//                self?.teste?.change(text: (self?.introText[self?.indexText ?? 0])!)
-//            }
-//        })
-//        testeButton?.position = .init(x: 90, y: 0)
-//        testeButton?.xScale = -1
-//        self.addChild(testeButton!)
+        testeButton = SKButtonNode(imageNamed: "right2", clickAction: { [weak self] in
+            self?.indexText += 1
+            
+            if(self!.indexText >= self!.introText.count) {
+                self?.cientist?.removeFromParent()
+                self?.testeButton?.setHideButton(true)
+                self?.pauseTime = false
+                background.removeFromParent()
+                // self?.teste?.change(text: "")
+            } else {
+                self?.cientist?.change(text: (self?.introText[self?.indexText ?? 0])!)
+            }
+        })
+        testeButton?.position = .init(x: 215, y: -90)
+        testeButton?.setScale(0.15)
+        self.addChild(testeButton!)
     }
 }
 

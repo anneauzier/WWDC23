@@ -18,7 +18,8 @@ public class SKBalloonNode: SKNode {
         self.label.verticalAlignmentMode = .center
         self.label.fontName = "Futura"
         self.label.fontColor = .white
-        self.label.fontSize = 14
+        self.label.fontSize = 16
+        self.label.position = CGPoint(x: 0, y: -100)
         self.zPosition += 5
         self.label.setScale(0.6)
         

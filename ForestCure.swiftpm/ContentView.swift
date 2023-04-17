@@ -14,9 +14,10 @@ struct ContentView: View {
 
     var body: some View {
         // uma visualizacao swiftui que renderiza uma cena do spritekit
-        SpriteView(scene: scene, debugOptions: [.showsPhysics])
+        SpriteView(scene: scene)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .aspectRatio(CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), contentMode: .fill)
             .ignoresSafeArea()
     }
 }
+//, debugOptions: [.showsPhysics]
