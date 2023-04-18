@@ -17,10 +17,24 @@ class LabScene: SKScene {
     var andirobaLabNode: AndirobaNode?
     var boldoLabNode: BoldoNode?
     var canaLabNode: CanaNode?
-    var card: SKBalloonNode?
+    
     var deliverButton: SKButtonNode?
+    var nextButtonLab: SKButtonNode?
+    var card: SKBalloonNode?
+    var cientistAgain: SKBalloonNode?
     
     var backgroundLabMusic = SKAudioNode(fileNamed: "labSound.mp3")
+    
+    var labTextWin: [String] = [
+        "I see you got the right plant, so let's prepare the medicine!",
+        "Pick up the plant and drag it to the pot."
+    ]
+    var labTextLost: [String] = [
+        "Gee, this wouldn't be the right plant to treat \n\nrespiratory diseases. \n\nBut let's make a remedy out of the plant you took.",
+        "Pick up the plant and drag it to the pot."
+    ]
+    var indexWin: Int = -1
+    var indexLost: Int = -1
     
     override func sceneDidLoad() {
         bottleNode = BottleNode()
@@ -28,7 +42,7 @@ class LabScene: SKScene {
         bottleNode?.position.x = -90
         self.addChild(bottleNode!)
         
-        self.scaleMode = .aspectFill
+        self.scaleMode = .aspectFit
         
         backgroundLabSound()
     }
@@ -41,41 +55,94 @@ class LabScene: SKScene {
             guacoLabNode = PlantsNode()
             guacoLabNode?.name = "guacoplantLab"
             guacoLabNode?.position = CGPoint(x: 50, y: 0)
+            guacoLabNode?.setScale(2)
             self.addChild(guacoLabNode!)
         }
         if ForestScene.shared.plantsCollected.contains("andirobaa") {
             andirobaLabNode = AndirobaNode()
             andirobaLabNode?.name = "andirobaplantLab"
             andirobaLabNode?.position = CGPoint(x: 100, y: -30)
+            andirobaLabNode?.setScale(2)
             self.addChild(andirobaLabNode!)
         }
         if ForestScene.shared.plantsCollected.contains("boldoo") {
             boldoLabNode = BoldoNode()
             boldoLabNode?.name = "boldoplantLab"
             boldoLabNode?.position = CGPoint(x: 200, y: -60)
+            boldoLabNode?.setScale(2)
             self.addChild(boldoLabNode!)
         }
         if ForestScene.shared.plantsCollected.contains("canaa") {
             canaLabNode = CanaNode()
             canaLabNode?.name = "canaplantLab"
             canaLabNode?.position = CGPoint(x: 300, y: -70)
+            canaLabNode?.setScale(2)
             self.addChild(canaLabNode!)
         }
-        
     }
     
     func setupLab() {
+    
         let background = SKSpriteNode(imageNamed: "lab")
         background.texture?.filteringMode = .nearest
+        background.position = CGPoint(x: 0, y: 0)
         background.zPosition = -10
+        
+        let scaleX = (size.width / background.size.width) 
+        let scaleY = (size.height / background.size.height) / 1.2
+        let scale = max(scaleX, scaleY)
+        background.setScale(scale)
+        
         self.addChild(background)
         
-        card = SKBalloonNode(imageNamed: "npc_balloon")
-        card?.position = CGPoint(x: 200 , y: 0)
-        card?.zPosition = 2
-        card?.setScale(0.6)
-        card?.setHide(true)
-        self.addChild(card!)
+//        card = SKBalloonNode(imageNamed: "npc_balloon")
+//        card?.position = CGPoint(x: 200 , y: 0)
+//        card?.zPosition = 2
+//        card?.setScale(0.6)
+//        card?.setHide(true)
+//        self.addChild(card!)
+        
+        cientistAgain = SKBalloonNode(imageNamed: "cientist3")
+        cientistAgain?.position = CGPoint(x: -4, y: -15)
+        cientistAgain?.zPosition = 4
+        cientistAgain?.setScale(1.2)
+        cientistAgain?.setHide(false)
+        self.addChild(cientistAgain!)
+        
+        if ForestScene.shared.plantsCollected.contains("guacoo"){
+            cientistAgain?.change(text: "Phew!! Thank goodness you brought the plant in time.")
+            
+            nextButtonLab = SKButtonNode(imageNamed: "right2", clickAction: { [weak self] in
+                self?.indexWin += 1
+                if(self!.indexWin >= self!.labTextWin.count) {
+                    self?.cientistAgain?.removeFromParent()
+                    self?.nextButtonLab?.setHideButton(true)
+                    // self?.teste?.change(text: "")
+                } else {
+                    self?.cientistAgain?.change(text: (self?.labTextWin[self?.indexWin ?? 0])!)
+                }
+            })
+            nextButtonLab?.position = .init(x: 280, y: -150)
+            nextButtonLab?.setScale(0.1)
+            self.addChild(nextButtonLab!)
+        }
+        else {
+            cientistAgain?.change(text: "Phew!! Thank goodness you brought the plant in time.")
+            
+            nextButtonLab = SKButtonNode(imageNamed: "right2", clickAction: { [weak self] in
+                self?.indexLost += 1
+                if(self!.indexLost >= self!.labTextLost.count) {
+                    self?.cientistAgain?.removeFromParent()
+                    self?.nextButtonLab?.setHideButton(true)
+                    // self?.teste?.change(text: "")
+                } else {
+                    self?.cientistAgain?.change(text: (self?.labTextLost[self?.indexLost ?? 0])!)
+                }
+            })
+            nextButtonLab?.position = .init(x: 280, y: -150)
+            nextButtonLab?.setScale(0.15)
+            self.addChild(nextButtonLab!)
+        }
     }
     
     func backgroundLabSound() {

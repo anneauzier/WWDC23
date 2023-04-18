@@ -36,7 +36,7 @@ class ForestScene: SKScene {
     var cancelAndirobaButton: SKButtonNode?
     var cancelBoldoButton: SKButtonNode?
     var cancelCanaButton: SKButtonNode?
-    var testeButton: SKButtonNode?
+    var nextTalkButton: SKButtonNode?
     
     var guacoCard: SKBalloonNode?
     var andirobaCard: SKBalloonNode?
@@ -54,8 +54,8 @@ class ForestScene: SKScene {
     
     public static let shared = ForestScene()
     var plantsCollected: [String] = []
-    
     var parallaxNodes: [SKNode] = []
+    var indexText: Int = -1
     
     var introText: [String] = [
     "My name is Steve, I'm a scientist, and I'm very relieved \n\nthat you showed up here to help me create natural remedies\n\n to treat common diseases here in the Amazon region!",
@@ -69,7 +69,6 @@ class ForestScene: SKScene {
     "Please, pay attention when choosing the plants in the forest, \n\nbecause your task is collect the plant that has properties \n\nthat help to treat these diseases as quickly as possible.",
     "Go in search of the plant and then take it to the lab!"
     ]
-    var indexText = -1
     
     override func sceneDidLoad() {
         internNode = InternNode()
@@ -139,15 +138,13 @@ class ForestScene: SKScene {
     }
     
     public func setupForest() {
-        
         let background = SKSpriteNode(imageNamed: "black")
         background.texture?.filteringMode = .nearest
         background.zPosition = 1
         background.position = CGPoint(x: 0, y: 0)
         self.addChild(background)
         
-        // ========= Camera =========
-        
+        // ========= Camera & Timer =========
         let camera = SKCameraNode()
         self.camera = camera
         camera.xScale = 0.6
@@ -164,7 +161,6 @@ class ForestScene: SKScene {
         self.camera?.addChild(timer!)
         
         //===== Discover Image ====
-        
         andirobaCard = SKBalloonNode(imageNamed: "andiroba_card")
         andirobaCard?.position = CGPoint(x: 200 , y: 15)
         andirobaCard?.zPosition = 2
@@ -194,7 +190,7 @@ class ForestScene: SKScene {
         self.addChild(guacoCard!)
         
         cientist = SKBalloonNode(imageNamed: "cientist3")
-        cientist?.position.x = -4
+        cientist?.position = CGPoint(x: -4, y: 4)
         cientist?.zPosition = 4
         cientist?.setScale(0.8)
         self.pauseTime = true
@@ -203,7 +199,6 @@ class ForestScene: SKScene {
         self.addChild(cientist!)
         
         // ======== Controls =========
-        
         leftButton = SKButtonNode(imageNamed: "left1", clickAction: { [weak self] in
             self?.direction = -1
             self?.internNode?.playAnim(state: .walk)
@@ -228,12 +223,12 @@ class ForestScene: SKScene {
         rightButton?.zPosition = 2
         self.camera?.addChild(rightButton!)
         
-        testeButton = SKButtonNode(imageNamed: "right2", clickAction: { [weak self] in
+        nextTalkButton = SKButtonNode(imageNamed: "right2", clickAction: { [weak self] in
             self?.indexText += 1
             
             if(self!.indexText >= self!.introText.count) {
                 self?.cientist?.removeFromParent()
-                self?.testeButton?.setHideButton(true)
+                self?.nextTalkButton?.setHideButton(true)
                 self?.pauseTime = false
                 background.removeFromParent()
                 // self?.teste?.change(text: "")
@@ -241,11 +236,9 @@ class ForestScene: SKScene {
                 self?.cientist?.change(text: (self?.introText[self?.indexText ?? 0])!)
             }
         })
-        testeButton?.position = .init(x: 215, y: -90)
-        testeButton?.setScale(0.15)
-        self.addChild(testeButton!)
-        
-        
+        nextTalkButton?.position = .init(x: 190, y: -90)
+        nextTalkButton?.setScale(0.1)
+        self.addChild(nextTalkButton!)
     }
 }
 

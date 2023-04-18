@@ -20,7 +20,7 @@ class TimerNode: SKNode {
         super.init()
         label.text = "0\(minutes):00"
         label.fontName = "PixelOperator8"
-        label.fontColor = SKColor(.red)
+        label.fontColor = SKColor(.white)
         label.fontSize = 20
         label.position.x = -20
         self.addChild(label)

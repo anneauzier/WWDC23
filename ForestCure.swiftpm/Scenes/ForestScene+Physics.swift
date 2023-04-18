@@ -153,7 +153,7 @@ extension ForestScene: SKPhysicsContactDelegate {
         if contact.bodyA.node?.name == "intern" && contact.bodyB.node?.name == "guaco" || contact.bodyA.node?.name == "guaco" && contact.bodyB.node?.name == "intern" {
             
             self.infoPlantsButton = SKButtonNode(imageNamed: "learnMore", clickAction: { [weak self] in
-                print("SAIBA MAIS")
+                
                 self?.guacoCard?.setHide(false)
                 self?.infoPlantsButton?.removeFromParent()
                 self?.pauseTime = true
