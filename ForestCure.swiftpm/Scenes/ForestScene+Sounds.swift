@@ -1,9 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Anne Victoria Batista Auzier on 13/04/23.
-//
 
 import Foundation
 import SpriteKit

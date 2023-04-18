@@ -12,7 +12,7 @@ class LabScene: SKScene {
     
     private var currentNode: SKNode?
     
-    var bottleNode: BottleNode?
+    var bottleLabNode: BottleNode?
     var guacoLabNode: PlantsNode?
     var andirobaLabNode: AndirobaNode?
     var boldoLabNode: BoldoNode?
@@ -24,6 +24,8 @@ class LabScene: SKScene {
     var cientistAgain: SKBalloonNode?
     
     var backgroundLabMusic = SKAudioNode(fileNamed: "labSound.mp3")
+    
+    var verifyAnimation: Bool = false
     
     var labTextWin: [String] = [
         "I see you got the right plant, so let's prepare the medicine!",
@@ -37,12 +39,12 @@ class LabScene: SKScene {
     var indexLost: Int = -1
     
     override func sceneDidLoad() {
-        bottleNode = BottleNode()
-        bottleNode?.name = "bottle"
-        bottleNode?.position.x = -90
-        self.addChild(bottleNode!)
+        bottleLabNode = BottleNode()
+        bottleLabNode?.name = "bottle"
+        bottleLabNode?.position = CGPoint(x: 0, y: 15)
+        self.addChild(bottleLabNode!)
         
-        self.scaleMode = .aspectFit
+        self.scaleMode = .aspectFill
         
         backgroundLabSound()
     }

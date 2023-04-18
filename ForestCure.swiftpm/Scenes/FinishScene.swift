@@ -19,7 +19,7 @@ class FinishScene: SKScene {
     }
     
     func text(){
-        var labelFinish: SKLabelNode = SKLabelNode(text: "")
+        let labelFinish: SKLabelNode = SKLabelNode(text: "")
         labelFinish.verticalAlignmentMode = .center
         labelFinish.fontName = "PixelOperator8"
         labelFinish.fontColor = .black

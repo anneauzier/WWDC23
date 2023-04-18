@@ -12,10 +12,7 @@ class BottleNode: SKNode {
     var bottleNode: SKSpriteNode
     
     override init() {
-        bottleNode = SKSpriteNode(
-            color: .blue,
-            size: CGSize(width: 50, height: 50)
-        )
+        bottleNode = SKSpriteNode(imageNamed: "bottle1")
         super.init()
         
         let physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: bottleNode.size.width, height: bottleNode.size.height))
@@ -27,11 +24,19 @@ class BottleNode: SKNode {
         physicsBody.contactTestBitMask = 2
         
         bottleNode.texture?.filteringMode = .nearest
+        bottleNode.setScale(2)
         self.physicsBody = physicsBody
         self.addChild(bottleNode)
-        
+    
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    public func animateTexture(named: String, range: ClosedRange<Int>, timePerFrame: CGFloat) {
+        bottleNode.run(.animate(with: .init(withFormat: named, range: range), timePerFrame: timePerFrame))
+    }
+//    public func textureAnimation(spriteSheet: [SKTexture], timeFrame: CGFloat){
+//        bottleNode.run(.animate(with: spriteSheet, timePerFrame: timeFrame))
+//    }
 }

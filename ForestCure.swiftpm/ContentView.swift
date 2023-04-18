@@ -25,14 +25,10 @@ struct ContentView: View {
             }
     }
     func getFont(size: CGFloat) -> Font {
-        
         let cfURL = Bundle.main.url( forResource: "PixelOperator8", withExtension:
                                         "ttf")! as CFURL
-        
         CTFontManagerRegisterFontsForURL(cfURL,CTFontManagerScope.process,nil)
-        
         let font = Font.custom("PixelOperator8", size: size)
-        
         return font
     }
 
