@@ -21,9 +21,21 @@ class ForestScene: SKScene {
     
     var rightButton: SKButtonNode?
     var leftButton: SKButtonNode?
+    
     var infoPlantsButton: SKButtonNode?
+    var andirobaInfoButton: SKButtonNode?
+    var boldoInfoButton: SKButtonNode?
+    var canaInfoButton: SKButtonNode?
+    
     var collectPlantsButton: SKButtonNode?
+    var collectAndirobaButton: SKButtonNode?
+    var collectBoldoButton: SKButtonNode?
+    var collectCanaButton: SKButtonNode?
+    
     var cancelPlantsButton: SKButtonNode?
+    var cancelAndirobaButton: SKButtonNode?
+    var cancelBoldoButton: SKButtonNode?
+    var cancelCanaButton: SKButtonNode?
     var testeButton: SKButtonNode?
     
     var guacoCard: SKBalloonNode?
@@ -46,8 +58,16 @@ class ForestScene: SKScene {
     var parallaxNodes: [SKNode] = []
     
     var introText: [String] = [
-        "My name is Steve, I'm a scientist, and I'm very relieved \nthat you showed up here  to help me create natural remedies to treat common diseases \nhere in the Amazon region!",
-        "texto 3",
+    "My name is Steve, I'm a scientist, and I'm very relieved \n\nthat you showed up here to help me create natural remedies\n\n to treat common diseases here in the Amazon region!",
+    "But first of all, I would like to know if you know about \n\nthe so-called medicinal plants.",
+    "No? Okay, let me explain. Medicinal plants are plants that \n\nhave pharmacological action, in other words, they help \n\nin the cure or treatment of several diseases.",
+    "And here in the Amazon region it is quite common to use \n\nthe benefits of these plants to cure illnesses.",
+    "Thanks to my intense study in the indigenous communities, \n\nI have learned a lot about how much these plants can \n\noffer us if we use them in the right way.",
+    "I learned so much that I built a laboratory where I test and \n\nprepare natural remedies using medicinal plants!",
+    "However, I am no longer as willing as before and need your \n\nhelp to get the plants and prepare the medicines.",
+    "Lately, there have been many respiratory diseases \n\ndue to the constant burning in the region, so I need you \n\nto help me work on a remedy urgently!",
+    "Please, pay attention when choosing the plants in the forest, \n\nbecause your task is collect the plant that has properties \n\nthat help to treat these diseases as quickly as possible.",
+    "Go in search of the plant and then take it to the lab!"
     ]
     var indexText = -1
     
@@ -89,7 +109,7 @@ class ForestScene: SKScene {
         labNode?.name = "lab_semfundo"
         labNode?.zPosition = -1
         labNode?.position.y = -55
-        labNode?.position.x = -230
+        labNode?.position.x = -190
         self.addChild(labNode!)
         
         setupBackgroundParallax()
@@ -122,7 +142,7 @@ class ForestScene: SKScene {
         
         let background = SKSpriteNode(imageNamed: "black")
         background.texture?.filteringMode = .nearest
-        background.zPosition = -1
+        background.zPosition = 1
         background.position = CGPoint(x: 0, y: 0)
         self.addChild(background)
         
@@ -137,9 +157,10 @@ class ForestScene: SKScene {
         self.camera?.constraints = [constraint]
         
         timer = TimerNode()
-        timer?.position.x = -300
-        timer?.position.y = 80
-        timer?.zPosition = 2
+        timer?.position.x = 340
+        timer?.position.y = 120
+        timer?.zPosition = -1
+        timer?.setScale(1.2)
         self.camera?.addChild(timer!)
         
         //===== Discover Image ====
@@ -170,14 +191,12 @@ class ForestScene: SKScene {
         guacoCard?.zPosition = 2
         guacoCard?.setScale(0.67)
         guacoCard?.setHide(true)
-        //        guacoCard?.run(SKAction.moveTo(y: -120, duration: 0.8))
         self.addChild(guacoCard!)
         
-        cientist = SKBalloonNode(imageNamed: "cientist")
+        cientist = SKBalloonNode(imageNamed: "cientist3")
         cientist?.position.x = -4
         cientist?.zPosition = 4
         cientist?.setScale(0.8)
-//        cientist?.scene?.scaleMode = .resizeFill
         self.pauseTime = true
         cientist?.setHide(false)
         cientist?.change(text: "Hello, trainee! Welcome to my Institute!")
@@ -192,7 +211,7 @@ class ForestScene: SKScene {
             self?.direction = 0
             self?.internNode?.playAnim(state: .idle)
         })
-        leftButton?.position = .init(x: -320, y: -160)
+        leftButton?.position = .init(x: -330, y: -150)
         leftButton?.setScale(0.2)
         leftButton?.zPosition = 2
         self.camera?.addChild(leftButton!)
@@ -204,7 +223,7 @@ class ForestScene: SKScene {
             self?.direction = 0
             self?.internNode?.playAnim(state: .idle)
         })
-        rightButton?.position = .init(x: -230, y: -160)
+        rightButton?.position = .init(x: 330, y: -150)
         rightButton?.setScale(0.2)
         rightButton?.zPosition = 2
         self.camera?.addChild(rightButton!)
@@ -225,6 +244,8 @@ class ForestScene: SKScene {
         testeButton?.position = .init(x: 215, y: -90)
         testeButton?.setScale(0.15)
         self.addChild(testeButton!)
+        
+        
     }
 }
 

@@ -1,5 +1,7 @@
 
 import SpriteKit
+import SwiftUI
+import Foundation
 
 public class SKBalloonNode: SKNode {
     
@@ -16,13 +18,13 @@ public class SKBalloonNode: SKNode {
         self.background.zPosition = -1
         
         self.label.verticalAlignmentMode = .center
-        self.label.fontName = "Futura"
-        self.label.fontColor = .white
-        self.label.fontSize = 16
-        self.label.position = CGPoint(x: 0, y: -100)
+        self.label.fontName = "PixelOperator8"
+        self.label.fontColor = .black
+        self.label.fontSize = 14
+        self.label.position = CGPoint(x: 40, y: -90)
+        self.label.numberOfLines = 0
         self.zPosition += 5
         self.label.setScale(0.6)
-        
         
         self.addChild(background)
         self.addChild(label)

@@ -13,11 +13,7 @@ extension LabScene: SKPhysicsContactDelegate {
         if contact.bodyA.node?.name == "bottle" && contact.bodyB.node?.name == "guacoplantLab" || contact.bodyA.node?.name == "guacoplantLab" && contact.bodyB.node?.name == "bottle" {
             print("TOQUEIII")
             self.bottleNode?.bottleNode.color = .green
-            self.guacoLabNode?.removeFromParent()
-            
-            if bottleNode!.bottleNode.color == .green {
-                card?.setHide(false)
-            }
+            self.guacoLabNode?.removeFromParent()            
         }
         if contact.bodyA.node?.name == "bottle" && contact.bodyB.node?.name == "andirobaplantLab" || contact.bodyA.node?.name == "andirobaplantLab" && contact.bodyB.node?.name == "bottle" {
             print("TOQUEIII andi")
@@ -33,6 +29,14 @@ extension LabScene: SKPhysicsContactDelegate {
             print("TOQUEIII cana")
             self.bottleNode?.bottleNode.color = .green
             self.canaLabNode?.removeFromParent()
+        }
+        if bottleNode?.bottleNode.color == .green {
+            deliverButton = SKButtonNode(imageNamed: "deliver", clickAction: {[weak self] in
+                self?.card?.setHide(false)
+                self?.deliverButton?.removeFromParent()
+            })
+            deliverButton?.position = CGPoint(x: 20, y: 0)
+            self.addChild(deliverButton!)
         }
     }
 }

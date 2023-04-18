@@ -27,6 +27,7 @@ class StartScene: SKScene {
             let startScene = ForestScene(size: self!.size)
             startScene.scaleMode = self!.scaleMode
             self!.view?.presentScene(startScene)
+            self?.startInitialSceneMusic.removeFromParent()
         })
         startButton?.position.x = -180
         startButton?.position.y = -50
@@ -34,7 +35,7 @@ class StartScene: SKScene {
     }
     
     func startInitialSceneSound() {
-        startInitialSceneMusic.run(SKAction.changeVolume(by: Float(0.5), duration: 0.08))
+        startInitialSceneMusic.run(SKAction.changeVolume(by: Float(0.2), duration: 0))
         startInitialSceneMusic.run(.play())
         self.addChild(startInitialSceneMusic)
     }

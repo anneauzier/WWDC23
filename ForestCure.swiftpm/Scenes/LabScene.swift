@@ -18,6 +18,7 @@ class LabScene: SKScene {
     var boldoLabNode: BoldoNode?
     var canaLabNode: CanaNode?
     var card: SKBalloonNode?
+    var deliverButton: SKButtonNode?
     
     var backgroundLabMusic = SKAudioNode(fileNamed: "labSound.mp3")
     
@@ -76,8 +77,9 @@ class LabScene: SKScene {
         card?.setHide(true)
         self.addChild(card!)
     }
+    
     func backgroundLabSound() {
-        backgroundLabMusic.run(SKAction.changeVolume(to: Float(0.5), duration: 0))
+        backgroundLabMusic.run(SKAction.changeVolume(to: Float(0.2), duration: 0))
         backgroundLabMusic.run(.play())
         self.addChild(backgroundLabMusic)
     }

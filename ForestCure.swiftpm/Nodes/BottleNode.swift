@@ -16,7 +16,6 @@ class BottleNode: SKNode {
             color: .blue,
             size: CGSize(width: 50, height: 50)
         )
-    
         super.init()
         
         let physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: bottleNode.size.width, height: bottleNode.size.height))

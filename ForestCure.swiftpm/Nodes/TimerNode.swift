@@ -19,8 +19,8 @@ class TimerNode: SKNode {
     override init() {
         super.init()
         label.text = "0\(minutes):00"
-        label.fontName = "Futura"
-        label.fontColor = SKColor(.white)
+        label.fontName = "PixelOperator8"
+        label.fontColor = SKColor(.red)
         label.fontSize = 20
         label.position.x = -20
         self.addChild(label)
