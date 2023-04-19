@@ -50,7 +50,7 @@ extension LabScene: SKPhysicsContactDelegate {
 
                 })
                 self.deliverButton?.position = CGPoint(x: 0, y: -60)
-                self.deliverButton?.setScale(2)
+                self.deliverButton?.setScale(0.5)
                 self.addChild(self.deliverButton!)
             }
         }

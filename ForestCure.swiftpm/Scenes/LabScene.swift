@@ -18,6 +18,9 @@ class LabScene: SKScene {
     var boldoLabNode: BoldoNode?
     var canaLabNode: CanaNode?
     
+    var fireLab: Fire?
+    var smoke: Smoke?
+    
     var deliverButton: SKButtonNode?
     var nextButtonLab: SKButtonNode?
     var card: SKBalloonNode?
@@ -45,6 +48,14 @@ class LabScene: SKScene {
         bottleLabNode?.position = CGPoint(x: 0, y: 15)
         self.addChild(bottleLabNode!)
         
+        fireLab = Fire()
+        fireLab?.position = CGPoint(x: 0, y: -43)
+        self.addChild(fireLab!)
+        
+        smoke = Smoke()
+        smoke?.position = CGPoint(x: 0, y: 50)
+        self.addChild(smoke!)
+        
         self.scaleMode = .aspectFill
         
         backgroundLabSound()
@@ -57,14 +68,14 @@ class LabScene: SKScene {
         if ForestScene.shared.plantsCollected.contains("guacoo") {
             guacoLabNode = PlantsNode()
             guacoLabNode?.name = "guacoplantLab"
-            guacoLabNode?.position = CGPoint(x: -90, y: -100)
+            guacoLabNode?.position = CGPoint(x: -210, y: -100)
             guacoLabNode?.setScale(2)
             self.addChild(guacoLabNode!)
         }
         if ForestScene.shared.plantsCollected.contains("andirobaa") {
             andirobaLabNode = AndirobaNode()
             andirobaLabNode?.name = "andirobaplantLab"
-            andirobaLabNode?.position = CGPoint(x: -60, y: -100)
+            andirobaLabNode?.position = CGPoint(x: -90, y: -100)
             andirobaLabNode?.setScale(2)
             self.addChild(andirobaLabNode!)
         }

@@ -122,6 +122,7 @@ class ForestScene: SKScene {
         self.scaleMode = .aspectFill
         self.physicsWorld.contactDelegate = self
         createInfitinyBackground()
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -136,6 +137,13 @@ class ForestScene: SKScene {
         } else {
             self.timer?.isPaused = false
             self.timer!.updateTimer(currentTime: currentTime)
+        }
+        if self.timer?.minutes == 0 && self.timer?.seconds == 0{
+            let finishScene = LostScene()
+            finishScene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            finishScene.scaleMode = .aspectFit
+            finishScene.anchorPoint = .init(x: 0.5, y: 0.5)
+            self.view?.presentScene(finishScene)
         }
     }
     
@@ -166,28 +174,28 @@ class ForestScene: SKScene {
         andirobaCard = SKBalloonNode(imageNamed: "andiroba_card")
         andirobaCard?.position = CGPoint(x: 200 , y: 15)
         andirobaCard?.zPosition = 2
-        andirobaCard?.setScale(0.67)
+        andirobaCard?.setScale(0.2)
         andirobaCard?.setHide(true)
         self.addChild(andirobaCard!)
         
         boldoCard = SKBalloonNode(imageNamed: "boldo_card")
         boldoCard?.position = CGPoint(x: 400, y: 15)
         boldoCard?.zPosition = 2
-        boldoCard?.setScale(0.67)
+        boldoCard?.setScale(0.2)
         boldoCard?.setHide(true)
         self.addChild(boldoCard!)
         
         canaCard = SKBalloonNode(imageNamed: "cana_card")
         canaCard?.position = CGPoint(x: 600, y: 15)
         canaCard?.zPosition = 2
-        canaCard?.setScale(0.67)
+        canaCard?.setScale(0.2)
         canaCard?.setHide(true)
         self.addChild(canaCard!)
         
         guacoCard = SKBalloonNode(imageNamed: "guaco_card")
         guacoCard?.position = CGPoint(x: 800, y: 15)
         guacoCard?.zPosition = 2
-        guacoCard?.setScale(0.67)
+        guacoCard?.setScale(0.2)
         guacoCard?.setHide(true)
         self.addChild(guacoCard!)
         

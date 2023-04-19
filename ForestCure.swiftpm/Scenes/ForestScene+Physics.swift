@@ -26,9 +26,9 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.collectPlantsMusic.removeFromParent()
                     self!.pauseTime = false
                 })
-                self?.collectAndirobaButton?.position.x = 230
-                self?.collectAndirobaButton?.position.y = -50
-                self?.collectAndirobaButton?.setScale(0.7)
+                self?.collectAndirobaButton?.position.x = 240
+                self?.collectAndirobaButton?.position.y = -60
+                self?.collectAndirobaButton?.setScale(0.25)
                 self?.addChild(self!.collectAndirobaButton!)
                 
                 self?.cancelAndirobaButton = SKButtonNode(imageNamed: "leave", clickAction: {[weak self] in
@@ -40,15 +40,15 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.cancelPlantsMusic.removeFromParent()
                     self?.pauseTime = false
                 })
-                self?.cancelAndirobaButton?.position.x = 175
-                self?.cancelAndirobaButton?.position.y = -50
-                self?.cancelAndirobaButton?.setScale(0.7)
+                self?.cancelAndirobaButton?.position.x = 160
+                self?.cancelAndirobaButton?.position.y = -60
+                self?.cancelAndirobaButton?.setScale(0.25)
                 self?.addChild(self!.cancelAndirobaButton!)
             })
             self.andirobaInfoButton?.position.y = -40
             self.andirobaInfoButton?.position.x = 200
             self.andirobaInfoButton?.zPosition = -1
-            self.andirobaInfoButton?.setScale(0.7)
+            self.andirobaInfoButton?.setScale(0.23)
             self.addChild(andirobaInfoButton!)
         }
         
@@ -73,9 +73,9 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.collectPlantsMusic.removeFromParent()
                     self!.pauseTime = false
                 })
-                self?.collectBoldoButton?.position.x = 430
-                self?.collectBoldoButton?.position.y = -50
-                self?.collectBoldoButton?.setScale(0.7)
+                self?.collectBoldoButton?.position.x = 440
+                self?.collectBoldoButton?.position.y = -60
+                self?.collectBoldoButton?.setScale(0.25)
                 self?.addChild(self!.collectBoldoButton!)
                 
                 self?.cancelBoldoButton = SKButtonNode(imageNamed: "leave", clickAction: {[weak self] in
@@ -88,16 +88,16 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.cancelPlantsMusic.removeFromParent()
                     self?.pauseTime = false
                 })
-                self?.cancelBoldoButton?.position.x = 370
-                self?.cancelBoldoButton?.position.y = -50
-                self?.cancelBoldoButton?.setScale(0.7)
+                self?.cancelBoldoButton?.position.x = 360
+                self?.cancelBoldoButton?.position.y = -60
+                self?.cancelBoldoButton?.setScale(0.25)
                 self?.addChild(self!.cancelBoldoButton!)
                 
             })
             self.boldoInfoButton?.position.y = -40
             self.boldoInfoButton?.position.x = 400
             self.boldoInfoButton?.zPosition = -1
-            self.boldoInfoButton?.setScale(0.7)
+            self.boldoInfoButton?.setScale(0.23)
             self.addChild(boldoInfoButton!)
         }
         
@@ -122,9 +122,9 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.collectPlantsMusic.removeFromParent()
                     self!.pauseTime = false
                 })
-                self?.collectCanaButton?.position.x = 630
-                self?.collectCanaButton?.position.y = -50
-                self?.collectCanaButton?.setScale(0.7)
+                self?.collectCanaButton?.position.x = 640
+                self?.collectCanaButton?.position.y = -60
+                self?.collectCanaButton?.setScale(0.25)
                 self?.addChild(self!.collectCanaButton!)
                 
                 self?.cancelCanaButton = SKButtonNode(imageNamed: "leave", clickAction: {[weak self] in
@@ -137,16 +137,16 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.cancelPlantsMusic.removeFromParent()
                     self?.pauseTime = false
                 })
-                self?.cancelCanaButton?.position.x = 570
-                self?.cancelCanaButton?.position.y = -50
-                self?.cancelCanaButton?.setScale(0.7)
+                self?.cancelCanaButton?.position.x = 560
+                self?.cancelCanaButton?.position.y = -60
+                self?.cancelCanaButton?.setScale(0.25)
                 self?.addChild(self!.cancelCanaButton!)
                 
             })
             self.canaInfoButton?.position.y = -40
             self.canaInfoButton?.position.x = 600
             self.canaInfoButton?.zPosition = -1
-            self.canaInfoButton?.setScale(0.7)
+            self.canaInfoButton?.setScale(0.23)
             self.addChild(canaInfoButton!)
         }
         
@@ -171,9 +171,9 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.collectPlantsMusic.removeFromParent()
                     self!.pauseTime = false
                 })
-                self?.collectPlantsButton?.position.x = 830
-                self?.collectPlantsButton?.position.y = -50
-                self?.collectPlantsButton?.setScale(0.7)
+                self?.collectPlantsButton?.position.x = 840
+                self?.collectPlantsButton?.position.y = -60
+                self?.collectPlantsButton?.setScale(0.25)
                 self?.addChild(self!.collectPlantsButton!)
                 
                 self?.cancelPlantsButton = SKButtonNode(imageNamed: "leave", clickAction: {[weak self] in
@@ -185,16 +185,16 @@ extension ForestScene: SKPhysicsContactDelegate {
                     self?.cancelPlantsMusic.removeFromParent()
                     self?.pauseTime = false
                 })
-                self?.cancelPlantsButton?.position.x = 770
-                self?.cancelPlantsButton?.position.y = -50
-                self?.cancelPlantsButton?.setScale(0.7)
+                self?.cancelPlantsButton?.position.x = 760
+                self?.cancelPlantsButton?.position.y = -60
+                self?.cancelPlantsButton?.setScale(0.25)
                 self?.addChild(self!.cancelPlantsButton!)
                 
             })
             self.infoPlantsButton?.position.y = -40
             self.infoPlantsButton?.position.x = 800
             self.infoPlantsButton?.zPosition = -1
-            self.infoPlantsButton?.setScale(0.7)
+            self.infoPlantsButton?.setScale(0.23)
             self.addChild(infoPlantsButton!)
         }
         
@@ -211,7 +211,7 @@ extension ForestScene: SKPhysicsContactDelegate {
                 })
                 self.infoPlantsButton?.position.y = 20
                 self.infoPlantsButton?.position.x = -190
-                self.infoPlantsButton?.setScale(0.7)
+                self.infoPlantsButton?.setScale(0.23)
                 self.addChild(infoPlantsButton!)
             }
         }
