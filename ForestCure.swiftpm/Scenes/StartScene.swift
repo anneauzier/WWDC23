@@ -30,7 +30,7 @@ class StartScene: SKScene {
             self?.startInitialSceneMusic.removeFromParent()
         })
         startButton?.position.x = -180
-        startButton?.position.y = -50
+        startButton?.position.y = -20
         startButton?.setScale(1.2)
         self.addChild(startButton!)
     }
