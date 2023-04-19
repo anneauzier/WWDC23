@@ -10,7 +10,7 @@ import SpriteKit
 
 class LabScene: SKScene {
     
-    private var currentNode: SKNode?
+    public var currentNode: SKNode?
     
     var bottleLabNode: BottleNode?
     var guacoLabNode: PlantsNode?
@@ -26,7 +26,8 @@ class LabScene: SKScene {
     var backgroundLabMusic = SKAudioNode(fileNamed: "labSound.mp3")
     
     var verifyAnimation: Bool = false
-    
+    public static let sharedPlants = LabScene()
+    var contactPlants: [Int] = []
     var labTextWin: [String] = [
         "I see you got the right plant, so let's prepare the medicine!",
         "Pick up the plant and drag it to the pot."
@@ -56,53 +57,53 @@ class LabScene: SKScene {
         if ForestScene.shared.plantsCollected.contains("guacoo") {
             guacoLabNode = PlantsNode()
             guacoLabNode?.name = "guacoplantLab"
-            guacoLabNode?.position = CGPoint(x: 50, y: 0)
+            guacoLabNode?.position = CGPoint(x: -90, y: -100)
             guacoLabNode?.setScale(2)
             self.addChild(guacoLabNode!)
         }
         if ForestScene.shared.plantsCollected.contains("andirobaa") {
             andirobaLabNode = AndirobaNode()
             andirobaLabNode?.name = "andirobaplantLab"
-            andirobaLabNode?.position = CGPoint(x: 100, y: -30)
+            andirobaLabNode?.position = CGPoint(x: -60, y: -100)
             andirobaLabNode?.setScale(2)
             self.addChild(andirobaLabNode!)
         }
         if ForestScene.shared.plantsCollected.contains("boldoo") {
             boldoLabNode = BoldoNode()
             boldoLabNode?.name = "boldoplantLab"
-            boldoLabNode?.position = CGPoint(x: 200, y: -60)
+            boldoLabNode?.position = CGPoint(x: 90, y: -100)
             boldoLabNode?.setScale(2)
             self.addChild(boldoLabNode!)
         }
         if ForestScene.shared.plantsCollected.contains("canaa") {
             canaLabNode = CanaNode()
             canaLabNode?.name = "canaplantLab"
-            canaLabNode?.position = CGPoint(x: 300, y: -70)
+            canaLabNode?.position = CGPoint(x: 210, y: -100)
             canaLabNode?.setScale(2)
             self.addChild(canaLabNode!)
         }
     }
     
     func setupLab() {
-    
+        
         let background = SKSpriteNode(imageNamed: "lab")
         background.texture?.filteringMode = .nearest
         background.position = CGPoint(x: 0, y: 0)
         background.zPosition = -10
         
-        let scaleX = (size.width / background.size.width) 
+        let scaleX = (size.width / background.size.width)
         let scaleY = (size.height / background.size.height) / 1.2
         let scale = max(scaleX, scaleY)
         background.setScale(scale)
         
         self.addChild(background)
         
-//        card = SKBalloonNode(imageNamed: "npc_balloon")
-//        card?.position = CGPoint(x: 200 , y: 0)
-//        card?.zPosition = 2
-//        card?.setScale(0.6)
-//        card?.setHide(true)
-//        self.addChild(card!)
+        //        card = SKBalloonNode(imageNamed: "npc_balloon")
+        //        card?.position = CGPoint(x: 200 , y: 0)
+        //        card?.zPosition = 2
+        //        card?.setScale(0.6)
+        //        card?.setHide(true)
+        //        self.addChild(card!)
         
         cientistAgain = SKBalloonNode(imageNamed: "cientist3")
         cientistAgain?.position = CGPoint(x: -4, y: -15)
@@ -145,6 +146,7 @@ class LabScene: SKScene {
             nextButtonLab?.setScale(0.15)
             self.addChild(nextButtonLab!)
         }
+        print(contactPlants)
     }
     
     func backgroundLabSound() {
@@ -152,6 +154,7 @@ class LabScene: SKScene {
         backgroundLabMusic.run(.play())
         self.addChild(backgroundLabMusic)
     }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
@@ -167,8 +170,10 @@ class LabScene: SKScene {
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first, let node = currentNode {
-            let touchLocation = touch.location(in: self)
-            node.position = touchLocation
+            if LabScene.sharedPlants.contactPlants.count == 0 {
+                let touchLocation = touch.location(in: self)
+                node.position = touchLocation
+            }
         }
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -31,19 +31,19 @@ class FinishScene: SKScene {
         
         self.addChild(labelFinish)
         
-        if ForestScene.shared.plantsCollected.contains("guacoo"){
+        if LabScene.sharedPlants.contactPlants.contains(4){
             backgroundColor = .green
             labelFinish.text = "guacooo"
         }
-        if ForestScene.shared.plantsCollected.contains("andirobaa") {
+        if LabScene.sharedPlants.contactPlants.contains(1) {
             backgroundColor = .brown
             labelFinish.text = "andirobaaa"
         }
-        if ForestScene.shared.plantsCollected.contains("boldoo") {
+        if LabScene.sharedPlants.contactPlants.contains(2) {
             backgroundColor = .blue
             labelFinish.text = "boldooo"
         }
-        if ForestScene.shared.plantsCollected.contains("canaa") {
+        if LabScene.sharedPlants.contactPlants.contains(3) {
             backgroundColor = .red
             labelFinish.text = "cannnaaa"
         }

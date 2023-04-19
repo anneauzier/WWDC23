@@ -11,6 +11,8 @@ import SwiftUI
 
 class ForestScene: SKScene {
     
+    var sceneNode = SKNode()
+    
     var internNode: InternNode?
     var gaucoNode: PlantsNode?
     var andirobaNode: AndirobaNode?
