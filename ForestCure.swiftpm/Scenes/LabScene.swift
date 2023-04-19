@@ -32,11 +32,11 @@ class LabScene: SKScene {
     public static let sharedPlants = LabScene()
     var contactPlants: [Int] = []
     var labTextWin: [String] = [
-        "I see you got the right plant, so let's prepare the medicine!",
+        "I see you got the right plant, so let's prepare \n\nthe medicine!",
         "Pick up the plant and drag it to the pot."
     ]
     var labTextLost: [String] = [
-        "Gee, this wouldn't be the right plant to treat \n\nrespiratory diseases. \n\nBut let's make a remedy out of the plant you took.",
+        "Gee, this wouldn't be the right plant to treat respiratory \n\ndiseases. But let's make a remedy out of the plant \n\nyou took.",
         "Pick up the plant and drag it to the pot."
     ]
     var indexWin: Int = -1
@@ -109,13 +109,6 @@ class LabScene: SKScene {
         
         self.addChild(background)
         
-        //        card = SKBalloonNode(imageNamed: "npc_balloon")
-        //        card?.position = CGPoint(x: 200 , y: 0)
-        //        card?.zPosition = 2
-        //        card?.setScale(0.6)
-        //        card?.setHide(true)
-        //        self.addChild(card!)
-        
         cientistAgain = SKBalloonNode(imageNamed: "cientist3")
         cientistAgain?.position = CGPoint(x: -4, y: -15)
         cientistAgain?.zPosition = 4
@@ -137,7 +130,7 @@ class LabScene: SKScene {
                 }
             })
             nextButtonLab?.position = .init(x: 280, y: -150)
-            nextButtonLab?.setScale(0.1)
+            nextButtonLab?.setScale(0.18)
             self.addChild(nextButtonLab!)
         }
         else {
@@ -154,7 +147,7 @@ class LabScene: SKScene {
                 }
             })
             nextButtonLab?.position = .init(x: 280, y: -150)
-            nextButtonLab?.setScale(0.15)
+            nextButtonLab?.setScale(0.18)
             self.addChild(nextButtonLab!)
         }
     }

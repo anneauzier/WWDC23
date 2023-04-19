@@ -35,8 +35,8 @@ class LostScene: SKScene {
             self?.view?.presentScene(scene)
             ForestScene.shared.plantsCollected = []
         })
-        restart?.position = CGPoint(x: 0, y: 0)
-        restart?.setScale(2)
+        restart?.position = CGPoint(x: -180, y: -70)
+        restart?.setScale(1.5)
         self.addChild(restart!)
     }
     
@@ -45,13 +45,13 @@ class LostScene: SKScene {
         labelFinish.verticalAlignmentMode = .center
         labelFinish.fontName = "PixelOperator8"
         labelFinish.fontColor = .white
-        labelFinish.fontSize = 12
-        labelFinish.position = CGPoint(x: -150, y: -20)
+        labelFinish.fontSize = 14
+        labelFinish.position = CGPoint(x: -130, y: 0)
         labelFinish.numberOfLines = 0
         labelFinish.zPosition += 5
         labelFinish.setScale(0.7)
         self.addChild(labelFinish)
         
-        labelFinish.text = "Unfortunately, you couldn't get the plants in time. \n\n\nPlease, restart the app and try again to pick the right plant!"
+        labelFinish.text = "Unfortunately, you couldn't get the plants in time. \n\n\nBut I know you can do it next time!"
     }
 }
