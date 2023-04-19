@@ -34,6 +34,9 @@ class StartScene: SKScene {
         startButton?.setScale(1.2)
         self.addChild(startButton!)
     }
+    override func didMove(to view: SKView) {
+        print("")
+    }
     
     func startInitialSceneSound() {
         startInitialSceneMusic.run(SKAction.changeVolume(by: Float(0.2), duration: 0))

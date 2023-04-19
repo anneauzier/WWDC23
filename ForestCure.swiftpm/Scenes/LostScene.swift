@@ -27,12 +27,17 @@ class LostScene: SKScene {
     override func didMove(to view: SKView) {
         
         self.scaleMode = .aspectFill
-        //        restart = SKButtonNode(imageNamed: "inspect", clickAction: {[weak self] in
-        //            ForestScene.shared.restart()
-        //        })
-        //        restart?.position = CGPoint(x: 0, y: 0)
-        //        restart?.setScale(2)
-        //        self.addChild(restart!)
+        restart = SKButtonNode(imageNamed: "inspect", clickAction: {[weak self] in
+            let scene = ForestScene()
+            scene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            scene.scaleMode = .aspectFill
+            scene.anchorPoint = .init(x: 0.5, y: 0.5)
+            self?.view?.presentScene(scene)
+            ForestScene.shared.plantsCollected = []
+        })
+        restart?.position = CGPoint(x: 0, y: 0)
+        restart?.setScale(2)
+        self.addChild(restart!)
     }
     
     func textLost(){
