@@ -46,8 +46,8 @@ extension LabScene: SKPhysicsContactDelegate {
                     finishScene.anchorPoint = .init(x: 0.5, y: 0.5)
                     self!.view?.presentScene(finishScene)
                     
+                    self?.backgroundLabMusic.removeFromParent()
                     self?.deliverButton?.removeFromParent()
-
                 })
                 self.deliverButton?.position = CGPoint(x: 0, y: -60)
                 self.deliverButton?.setScale(0.5)

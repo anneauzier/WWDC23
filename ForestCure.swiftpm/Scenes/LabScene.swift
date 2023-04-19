@@ -157,7 +157,6 @@ class LabScene: SKScene {
             nextButtonLab?.setScale(0.15)
             self.addChild(nextButtonLab!)
         }
-        print(contactPlants)
     }
     
     func backgroundLabSound() {

@@ -14,14 +14,39 @@ class LostScene: SKScene {
     override func sceneDidLoad() {
         super.sceneDidLoad()
         
-        backgroundColor = .brown
+        let backgroundLost = SKSpriteNode(imageNamed: "lost")
+        backgroundLost.texture?.filteringMode = .nearest
+        backgroundLost.zPosition = -10
+        backgroundLost.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        backgroundLost.scene?.scaleMode = .aspectFill
+        self.addChild(backgroundLost)
+        
+        textLost()
+        
     }
     override func didMove(to view: SKView) {
-        restart = SKButtonNode(imageNamed: "inspect", clickAction: {[weak self] in
-//            ForestScene.shared.restart()
-        })
-        restart?.position = CGPoint(x: 0, y: 0)
-        restart?.setScale(2)
-        self.addChild(restart!)
+        
+        self.scaleMode = .aspectFill
+        //        restart = SKButtonNode(imageNamed: "inspect", clickAction: {[weak self] in
+        //            ForestScene.shared.restart()
+        //        })
+        //        restart?.position = CGPoint(x: 0, y: 0)
+        //        restart?.setScale(2)
+        //        self.addChild(restart!)
+    }
+    
+    func textLost(){
+        let labelFinish: SKLabelNode = SKLabelNode(text: "")
+        labelFinish.verticalAlignmentMode = .center
+        labelFinish.fontName = "PixelOperator8"
+        labelFinish.fontColor = .white
+        labelFinish.fontSize = 12
+        labelFinish.position = CGPoint(x: -150, y: -20)
+        labelFinish.numberOfLines = 0
+        labelFinish.zPosition += 5
+        labelFinish.setScale(0.7)
+        self.addChild(labelFinish)
+        
+        labelFinish.text = "Unfortunately, you couldn't get the plants in time. \n\n\nPlease, restart the app and try again to pick the right plant!"
     }
 }

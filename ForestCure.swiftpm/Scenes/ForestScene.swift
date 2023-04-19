@@ -60,16 +60,16 @@ class ForestScene: SKScene {
     var indexText: Int = -1
     
     var introText: [String] = [
-    "My name is Steve, I'm a scientist, and I'm very relieved \n\nthat you showed up here to help me create natural remedies\n\n to treat common diseases here in the Amazon region!",
-    "But first of all, I would like to know if you know about \n\nthe so-called medicinal plants.",
-    "No? Okay, let me explain. Medicinal plants are plants that \n\nhave pharmacological action, in other words, they help \n\nin the cure or treatment of several diseases.",
-    "And here in the Amazon region it is quite common to use \n\nthe benefits of these plants to cure illnesses.",
-    "Thanks to my intense study in the indigenous communities, \n\nI have learned a lot about how much these plants can \n\noffer us if we use them in the right way.",
-    "I learned so much that I built a laboratory where I test and \n\nprepare natural remedies using medicinal plants!",
-    "However, I am no longer as willing as before and need your \n\nhelp to get the plants and prepare the medicines.",
-    "Lately, there have been many respiratory diseases \n\ndue to the constant burning in the region, so I need you \n\nto help me work on a remedy urgently!",
-    "Please, pay attention when choosing the plants in the forest, \n\nbecause your task is collect the plant that has properties \n\nthat help to treat these diseases as quickly as possible.",
-    "Go in search of the plant and then take it to the lab!"
+        "My name is Steve, I'm a scientist, and I'm very relieved \n\nthat you showed up here to help me create natural remedies\n\n to treat common diseases here in the Amazon region!",
+        "But first of all, I would like to know if you know about \n\nthe so-called medicinal plants.",
+        "No? Okay, let me explain. Medicinal plants are plants that \n\nhave pharmacological action, in other words, they help \n\nin the cure or treatment of several diseases.",
+        "And here in the Amazon region it is quite common to use \n\nthe benefits of these plants to cure illnesses.",
+        "Thanks to my intense study in the indigenous communities, \n\nI have learned a lot about how much these plants can \n\noffer us if we use them in the right way.",
+        "I learned so much that I built a laboratory where I test and \n\nprepare natural remedies using medicinal plants!",
+        "However, I am no longer as willing as before and need your \n\nhelp to get the plants and prepare the medicines.",
+        "Lately, there have been many respiratory diseases \n\ndue to the constant burning in the region, so I need you \n\nto help me work on a remedy urgently!",
+        "Please, pay attention when choosing the plants in the forest, \n\nbecause your task is collect the plant that has properties \n\nthat help to treat these diseases as quickly as possible.",
+        "Go in search of the plant and then take it to the lab!"
     ]
     
     override func sceneDidLoad() {
@@ -138,7 +138,7 @@ class ForestScene: SKScene {
             self.timer?.isPaused = false
             self.timer!.updateTimer(currentTime: currentTime)
         }
-        if self.timer?.minutes == 0 && self.timer?.seconds == 0{
+        if self.timer?.minutes == 0 && self.timer?.seconds == 0 {
             let finishScene = LostScene()
             finishScene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             finishScene.scaleMode = .aspectFit
