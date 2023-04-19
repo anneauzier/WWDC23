@@ -25,8 +25,7 @@ class LostScene: SKScene {
         
     }
     override func didMove(to view: SKView) {
-        
-        self.scaleMode = .aspectFill
+        self.scaleMode g= .aspectFill
         restart = SKButtonNode(imageNamed: "inspect", clickAction: {[weak self] in
             let scene = ForestScene()
             scene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
